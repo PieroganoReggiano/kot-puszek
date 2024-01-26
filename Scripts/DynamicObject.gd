@@ -1,5 +1,4 @@
 @tool
-
 extends Node3D
 
 # ---- arguments ----
@@ -149,7 +148,7 @@ func _process(delta):
 	
 	collision_shape.shape.height = sprite_size.x * sprite.pixel_size
 	collision_shape.shape.radius = sprite_size.y * sprite.pixel_size / 2.0
-	
+
 	if is_player:
 		process_player_input()
 
