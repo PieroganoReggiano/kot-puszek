@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dkw4hey0njdd4"]
 
-[ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="1_cpgqt"]
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_wqg10"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]
 [ext_resource type="Script" path="res://Scripts/DynamicObject.gd" id="2_vm71x"]
+[ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="3_cbims"]
 [ext_resource type="Texture2D" uid="uid://1as6p3f2yha0" path="res://Images/Floor/wall2_mid.png" id="5_w60u6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2oot"]
@@ -20,16 +20,6 @@ size = Vector2(50, 50)
 
 [node name="Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.257895, 4.76837e-07, -4.94054)
-
-[node name="Player" parent="." instance=ExtResource("1_cpgqt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38202, 2.20417, 0)
-script = ExtResource("2_vm71x")
-sprite_frames = ExtResource("2_58mns")
-is_player = true
-allow_jumping = true
-speed = 1.4
-acceleration = 2.0
-deceleration = 4.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
@@ -59,3 +49,13 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 shape = SubResource("BoxShape3D_t4hjd")
+
+[node name="Player" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39916, 1.91711, -0.11567)
+script = ExtResource("2_vm71x")
+sprite_frames = ExtResource("2_58mns")
+is_player = true
+allow_jumping = true
+speed = 1.4
+acceleration = 2.0
+deceleration = 4.0

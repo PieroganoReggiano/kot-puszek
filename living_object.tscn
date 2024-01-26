@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm8blpdid2ljd"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_n2gri"]
-
-[node name="LivingObject" type="Node2D"]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_n2gri")
