@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8cc880q1xue6"]
+
+[ext_resource type="Script" path="res://meniusy/StartoweMenu.gd" id="1_pvf1y"]
+[ext_resource type="FontFile" uid="uid://dbaodg3evongo" path="res://foncik/PixelifySans-Medium.ttf" id="2_3hx21"]
+[ext_resource type="FontFile" uid="uid://chacug4g3swd3" path="res://foncik/PixelifySans-SemiBold.ttf" id="3_jduck"]
+
+[node name="StartoweMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pvf1y")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HSplitContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="HSplitContainer/VSplitContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HSplitContainer/VSplitContainer/VBoxContainer2/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_3hx21")
+theme_override_fonts/bold_font = ExtResource("3_jduck")
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Gaming[/center]"
+
+[node name="TextureButton2" type="TextureButton" parent="HSplitContainer/VSplitContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HSplitContainer/VSplitContainer/VBoxContainer2/TextureButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_3hx21")
+theme_override_fonts/bold_font = ExtResource("3_jduck")
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Gaming[/center]"
+
+[node name="TextureButton3" type="TextureButton" parent="HSplitContainer/VSplitContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HSplitContainer/VSplitContainer/VBoxContainer2/TextureButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_3hx21")
+theme_override_fonts/bold_font = ExtResource("3_jduck")
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Gaming[/center]"
+
+[node name="TextureButton4" type="TextureButton" parent="HSplitContainer/VSplitContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HSplitContainer/VSplitContainer/VBoxContainer2/TextureButton4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_3hx21")
+theme_override_fonts/bold_font = ExtResource("3_jduck")
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]Gaming[/center]"
+
+[node name="Control" type="Control" parent="HSplitContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
