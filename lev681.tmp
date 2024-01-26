@@ -1,18 +1,17 @@
 [gd_scene load_steps=8 format=3 uid="uid://dkw4hey0njdd4"]
 
-[ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="1_cpgqt"]
+[ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://living_object.tscn" id="1_cpgqt"]
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_wqg10"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]
-[ext_resource type="Script" path="res://Scripts/DynamicObject.gd" id="2_vm71x"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="2_vm71x"]
 [ext_resource type="Texture2D" uid="uid://1as6p3f2yha0" path="res://Images/Floor/wall2_mid.png" id="5_w60u6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v18d"]
 albedo_texture = ExtResource("5_w60u6")
-uv1_scale = Vector3(100, 100, 100)
+uv1_scale = Vector3(20, 20, 20)
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sfujs"]
-size = Vector2(50, 50)
 
 [node name="Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.257895, 4.76837e-07, -4.94054)
@@ -22,21 +21,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.811878, 1.02957, 0)
 script = ExtResource("2_vm71x")
 sprite_frames = ExtResource("2_58mns")
 is_player = true
-speed = 1.4
-acceleration = 2.0
-deceleration = 4.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.837986, 0.545693, 0, -0.545693, 0.837986, 0.238238, 2.46274, 3.12901)
 current = true
 script = ExtResource("1_wqg10")
 speed = 50.0
 target = NodePath("../Player")
-offset = Vector3(0, 0.75, 0.5)
+offset = Vector3(0, 5, 3)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0, 1, -0.131063, 0.370563, 0.459202)
+transform = Transform3D(19.997, -0.349048, 0, 0.349048, 19.997, 0, 0, 0, 20, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_5v18d")
 mesh = SubResource("PlaneMesh_sfujs")
