@@ -51,16 +51,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureButton2" type="TextureButton" parent="HSplitContainer/MarginContainer/VBoxContainer2"]
+[node name="Start" type="TextureButton" parent="HSplitContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
+action_mode = 0
 texture_normal = ExtResource("3_erpvv")
 texture_pressed = ExtResource("4_5pvth")
 texture_hover = ExtResource("4_5pvth")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="HSplitContainer/MarginContainer/VBoxContainer2/TextureButton2"]
+[node name="Label" type="Label" parent="HSplitContainer/MarginContainer/VBoxContainer2/Start"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +73,7 @@ label_settings = SubResource("LabelSettings_on11e")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton3" type="TextureButton" parent="HSplitContainer/MarginContainer/VBoxContainer2"]
+[node name="Credits" type="TextureButton" parent="HSplitContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = ExtResource("3_erpvv")
@@ -81,19 +82,19 @@ texture_hover = ExtResource("4_5pvth")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="HSplitContainer/MarginContainer/VBoxContainer2/TextureButton3"]
+[node name="Label" type="Label" parent="HSplitContainer/MarginContainer/VBoxContainer2/Credits"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Gaming"
+text = "PIWO"
 label_settings = SubResource("LabelSettings_on11e")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton4" type="TextureButton" parent="HSplitContainer/MarginContainer/VBoxContainer2"]
+[node name="Quit" type="TextureButton" parent="HSplitContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = ExtResource("3_erpvv")
@@ -102,14 +103,14 @@ texture_hover = ExtResource("4_5pvth")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="HSplitContainer/MarginContainer/VBoxContainer2/TextureButton4"]
+[node name="Label" type="Label" parent="HSplitContainer/MarginContainer/VBoxContainer2/Quit"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Gaming"
+text = "Spaduwa"
 label_settings = SubResource("LabelSettings_on11e")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -117,3 +118,7 @@ vertical_alignment = 1
 [node name="Control" type="Control" parent="HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="pressed" from="HSplitContainer/MarginContainer/VBoxContainer2/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="HSplitContainer/MarginContainer/VBoxContainer2/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="HSplitContainer/MarginContainer/VBoxContainer2/Quit" to="." method="_on_quit_pressed"]
