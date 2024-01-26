@@ -1,3 +1,5 @@
+@tool
+
 extends Node3D
 
 # ---- arguments ----
@@ -29,8 +31,12 @@ var move_down:bool = false
 # ---- objects ----
 @onready var sprite = get_node("Body/sprite_center/Sprite")
 @onready var sprite_center = get_node("Body/sprite_center")
+@onready var collision_shape = get_node("Body/CollisionShape3D")
 @onready var body = get_node("Body")
 # ---- ----
+
+var sprite_size
+
 
 
 
@@ -38,6 +44,7 @@ var move_down:bool = false
 func _ready():
 	animation_states = {}
 	sprite.sprite_frames = sprite_frames
+	sprite_size = sprite.sprite_frames.get_frame_texture("Idle", 0).get_size()
 	play_animation("Idle")
 	
 func play_animation(name):
@@ -87,6 +94,9 @@ func process_movement(delta):
 	if(move_direction.z > 1): move_direction.z = 1;
 	if(move_direction.z < -1): move_direction.z = -1;
 	
+	if body.is_on_wall():
+		move_direction.x = 0
+		move_direction.z = 0
 	
 	var direction = move_direction
 		
@@ -106,6 +116,9 @@ func process_movement(delta):
 	if allow_jumping:
 		if not body.is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+			
+
+	
 
 	if(target_velocity == Vector3.ZERO and old_target_velocity != Vector3.ZERO):
 		play_animation("Idle")
@@ -133,6 +146,9 @@ func _process(delta):
 	var point = camera.global_transform.origin
 	sprite.look_at(Vector3(point.x, point.y, point.z), Vector3.UP)
 	#sprite_center.rotation.y = 33
+	
+	collision_shape.shape.height = sprite_size.x * sprite.pixel_size
+	collision_shape.shape.radius = sprite_size.y * sprite.pixel_size / 2.0
 	
 	if is_player:
 		process_player_input()
