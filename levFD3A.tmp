@@ -1,0 +1,155 @@
+[gd_scene load_steps=16 format=3 uid="uid://dkw4hey0njdd4"]
+
+[ext_resource type="Script" path="res://Scripts/DebugCanvas.gd" id="1_maoha"]
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_wqg10"]
+[ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="3_cbims"]
+[ext_resource type="Script" path="res://Scripts/Objects/Player.gd" id="4_3etlu"]
+[ext_resource type="Texture2D" uid="uid://1as6p3f2yha0" path="res://Images/Floor/wall2_mid.png" id="5_w60u6"]
+[ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_6xb56"]
+[ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="6_gxtd0"]
+[ext_resource type="Script" path="res://Scripts/Objects/Zombie.gd" id="10_h2cjh"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_bvec2"]
+vertices = PackedVector3Array(-24.5, 0.538224, -24.5, -24.5, 0.538224, 24.5, 24.5, 0.538224, 24.5, 24.5, 0.538224, -24.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0aa6e"]
+size = Vector2(50, 50)
+
+[sub_resource type="Curve3D" id="Curve3D_dvy2k"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1, 0, -2.713, 0, 0, 0, 0, 0, 0, 1.993, 0, -1.623, 0, 0, 0, 0, 0, 0, 5.129, 0, -0.889, 0, 0, 0, 0, 0, 0, 4.479, 0, 1.197),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v18d"]
+albedo_texture = ExtResource("5_w60u6")
+uv1_scale = Vector3(100, 100, 100)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sfujs"]
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4hjd"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2oot"]
+size = Vector3(0.2, 1, 0.2)
+
+[node name="Level" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258103, 0.00458896, -4.94257)
+
+[node name="---- Debug HUD ----" type="Node" parent="."]
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+script = ExtResource("1_maoha")
+
+[node name="DrunkLevel" type="Label" parent="Canvas"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 48.0
+offset_bottom = 71.0
+text = "test"
+
+[node name="Score" type="Label" parent="Canvas"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 31.0
+text = "test"
+
+[node name="---- Level basics ----" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00541, 0)
+current = true
+script = ExtResource("1_wqg10")
+speed = 50.0
+target = NodePath("../Player")
+offset = Vector3(0, 0.3, 0.8)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
+
+[node name="Player" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17123, 1.25084, -0.053144)
+script = ExtResource("4_3etlu")
+gravity_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.241164, 0)
+navigation_mesh = SubResource("NavigationMesh_bvec2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0382235, 0)
+mesh = SubResource("PlaneMesh_0aa6e")
+
+[node name="DrunkardNavigationPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_dvy2k")
+
+[node name="---- Level terrain ----" type="Node" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.131063, 0.502899, 0.459202)
+material_override = SubResource("StandardMaterial3D_5v18d")
+mesh = SubResource("PlaneMesh_sfujs")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_t4hjd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66196, 0.494319, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_l2oot")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+size = Vector3(0.2, 1, 0.2)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98128, 0.69129, -0.00446939)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_l2oot")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2"]
+size = Vector3(0.2, 1, 0.2)
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14084, 0.945544, -0.786997)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_l2oot")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D3"]
+size = Vector3(0.2, 1, 0.2)
+
+[node name="---- Level interactive ----" type="Node" parent="."]
+
+[node name="Drunkard" parent="." node_paths=PackedStringArray("navigation_path") instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.549434, 0.646413, 1.55121)
+script = ExtResource("6_6xb56")
+gravity_enabled = true
+speed = 1.4
+navigation_path = NodePath("../DrunkardNavigationPath")
+
+[node name="Can" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.609465, 0)
+script = ExtResource("6_gxtd0")
+gravity_enabled = null
+gravity = false
+
+[node name="Zombie" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.317196, 1.27723, 0.743548)
+script = ExtResource("10_h2cjh")
+
+[node name="ZombieDynamic" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42549, 0.418671, 0)
+script = ExtResource("10_h2cjh")
+speed = 1.0
+target = NodePath("../Player")

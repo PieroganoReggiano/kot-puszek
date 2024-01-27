@@ -1,24 +1,28 @@
-[gd_scene load_steps=25 format=3 uid="uid://clt23cavswubg"]
+[gd_scene load_steps=24 format=3 uid="uid://clt23cavswubg"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_5ff0w"]
-[ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]
+[ext_resource type="Script" path="res://Scripts/DebugCanvas.gd" id="1_maoha"]
 [ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="3_cbims"]
 [ext_resource type="Script" path="res://Scripts/Objects/Player.gd" id="4_3etlu"]
 [ext_resource type="Texture2D" uid="uid://1as6p3f2yha0" path="res://Images/Floor/wall2_mid.png" id="5_w60u6"]
 [ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_6xb56"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="6_gxtd0"]
-[ext_resource type="SpriteFrames" uid="uid://d1qiao6y7snn2" path="res://Images/Can/Frames.tres" id="7_bm1rs"]
-[ext_resource type="SpriteFrames" uid="uid://vc0qvvrvsf6i" path="res://Images/Bum/Frames.tres" id="7_f3o8n"]
 [ext_resource type="Script" path="res://Scripts/UI/koto_ui.gd" id="10_8f11n"]
 [ext_resource type="Script" path="res://Scripts/Objects/Zombie.gd" id="10_h2cjh"]
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="10_mh80m"]
-[ext_resource type="SpriteFrames" uid="uid://ca8ep5ww46ysg" path="res://Images/Zombie/Frames.tres" id="11_nd2gi"]
 [ext_resource type="Texture2D" uid="uid://laike43xpm0k" path="res://Images/UI/healthbar10.png" id="14_kl5n7"]
 [ext_resource type="Texture2D" uid="uid://c3wuh8o08c4jg" path="res://meniusy/butonik2.png" id="14_rt6u4"]
 [ext_resource type="Texture2D" uid="uid://b8cw2kgoyual1" path="res://Images/UI/frames/healthbar11.png" id="14_yoerg"]
 [ext_resource type="Texture2D" uid="uid://bvpy80pqxem3n" path="res://meniusy/butonik-najech2.png" id="15_5hgdq"]
 [ext_resource type="FontFile" uid="uid://dbaodg3evongo" path="res://foncik/PixelifySans-Medium.ttf" id="15_vtcd2"]
 [ext_resource type="AudioStream" uid="uid://rcat6rmlixjo" path="res://meniusy/pum_menu.ogg" id="17_u0cr5"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_merve"]
+vertices = PackedVector3Array(-9.5, 0.752674, -9.5, -9.5, 0.752674, 9.5, 9.5, 0.752674, 9.5, 9.5, 0.752674, -9.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fooj4"]
+size = Vector2(20, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v18d"]
 albedo_texture = ExtResource("5_w60u6")
@@ -39,7 +43,40 @@ font = ExtResource("15_vtcd2")
 font_size = 48
 
 [node name="Level" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258103, 0.00458896, -4.94257)
+
+[node name="Can_test" parent="." instance=ExtResource("3_cbims")]
+script = ExtResource("6_gxtd0")
+gravity_enabled = null
+gravity = false
+
+[node name="---- Debug HUD ----" type="Node" parent="."]
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+script = ExtResource("1_maoha")
+
+[node name="DrunkLevel" type="Label" parent="Canvas"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 48.0
+offset_bottom = 71.0
+text = "test"
+
+[node name="Score" type="Label" parent="Canvas"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 31.0
+text = "test"
+
+[node name="---- Level basics ----" type="Node" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.178032, 0)
+navigation_mesh = SubResource("NavigationMesh_merve")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.252674, 0)
+mesh = SubResource("PlaneMesh_fooj4")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("1_5ff0w")
@@ -55,13 +92,18 @@ transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 
 [node name="Puszek" parent="." instance=ExtResource("3_cbims")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258103, 14.9954, 4.94257)
 script = ExtResource("4_3etlu")
-sprite_frames = ExtResource("2_58mns")
 gravity_enabled = true
 speed = 7.0
 acceleration = 6.0
 deceleration = 10.0
 jump_speed = 120.0
 gravity = 30.0
+
+[node name="Drunkard" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.918547, 0)
+script = ExtResource("6_6xb56")
+gravity_enabled = true
+speed = 1.4
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -103,28 +145,19 @@ size = Vector3(0.2, 1, 0.2)
 
 [node name="---- Level interactive ----" type="Node" parent="."]
 
-[node name="Drunkard" parent="." instance=ExtResource("3_cbims")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.549434, 0.646413, 0)
-script = ExtResource("6_6xb56")
-sprite_frames = ExtResource("7_f3o8n")
-gravity_enabled = true
-
 [node name="Can" parent="." instance=ExtResource("3_cbims")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.609465, 0)
 script = ExtResource("6_gxtd0")
-sprite_frames = ExtResource("7_bm1rs")
 gravity_enabled = null
 gravity = false
 
 [node name="Zombie" parent="." instance=ExtResource("3_cbims")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.317196, 1.27723, 0.743548)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.317196, 1.27723, 1.61213)
 script = ExtResource("10_h2cjh")
-sprite_frames = ExtResource("11_nd2gi")
 
 [node name="ZombieDynamic" parent="." instance=ExtResource("3_cbims")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42549, 0.418671, 0)
 script = ExtResource("10_h2cjh")
-sprite_frames = ExtResource("11_nd2gi")
 speed = 1.0
 
 [node name="ui" type="Control" parent="."]
