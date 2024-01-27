@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm8blpdid2ljd"]
+[gd_scene load_steps=5 format=3 uid="uid://dm8blpdid2ljd"]
 
 [ext_resource type="Script" path="res://Scripts/DynamicObject.gd" id="1_gr72u"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_qcpx3"]
-resource_local_to_scene = true
-height = 0.16
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_atjgt"]
+height = 0.48
 radius = 0.08
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_k1dla"]
+resource_local_to_scene = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hmcaq"]
+resource_local_to_scene = true
 
 [node name="DynamicObject" type="Node3D"]
 
@@ -24,4 +29,14 @@ billboard = 1
 texture_filter = 0
 
 [node name="Collision" type="CollisionShape3D" parent="Body"]
-shape = SubResource("CylinderShape3D_qcpx3")
+shape = SubResource("CylinderShape3D_atjgt")
+
+[node name="attack_area" type="Area3D" parent="Body"]
+
+[node name="aCollision" type="CollisionShape3D" parent="Body/attack_area"]
+shape = SubResource("CylinderShape3D_k1dla")
+
+[node name="interaction_area" type="Area3D" parent="Body"]
+
+[node name="iCollision" type="CollisionShape3D" parent="Body/interaction_area"]
+shape = SubResource("CylinderShape3D_hmcaq")

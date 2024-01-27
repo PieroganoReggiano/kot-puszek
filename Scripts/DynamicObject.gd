@@ -12,8 +12,6 @@ extends Node3D
 @export var jump_speed:float = 4
 @export var acceleration:float = 3
 @export var deceleration:float = 3
-# The downward acceleration when in the air, in meters per second squared.
-@export var fall_acceleration = 75
 
 @export var collision_width_override:float = 0
 @export var collision_height_override:float = 0
@@ -22,7 +20,8 @@ extends Node3D
 
 # ---- non user-configurable parameters ----
 var jump_acceleration_time:float = 0.016667 * 8.0
-
+var attack_range = 30.0
+var interaction_range = 10.0
 
 # ---- variables ----
 var jump_time_elapsed:float = 99999
@@ -30,6 +29,7 @@ var jump_time_elapsed:float = 99999
 var animation_states:Dictionary
 var animation_playing:String = "idle"
 var animation_modifier:String = ""
+var animation_use_move:bool = true
 
 var target_velocity = Vector3.ZERO
 
@@ -47,6 +47,8 @@ var move_jump:bool = false
 @onready var sprite = body.get_node("sprite_center/Sprite")
 @onready var sprite_center = body.get_node("sprite_center")
 @onready var collision_shape = body.get_node("Collision")
+@onready var interaction_shape = body.get_node("interaction_area")
+@onready var attack_shape = body.get_node("attack_area")
 @onready var parent = body.get_parent()
 # ---- ----
 
@@ -66,15 +68,30 @@ func init():
 	sprite_size = sprite.sprite_frames.get_frame_texture("idle", 0).get_size()
 	if collision_width_override == 0:
 		collision_shape.shape.radius = sprite_size.x * sprite.pixel_size / 2.0
+		interaction_shape.get_node("iCollision").shape.radius = (sprite_size.x + interaction_range) * sprite.pixel_size / 2.0
+		attack_shape.get_node("aCollision").shape.radius = (sprite_size.x + attack_range) * sprite.pixel_size / 2.0 
 	else:
 		collision_shape.shape.radius = collision_width_override * sprite.pixel_size / 2.0
+		interaction_shape.get_node("iCollision").shape.radius = (collision_width_override + interaction_range) * sprite.pixel_size / 2.0
+		attack_shape.get_node("aCollision").shape.radius = (collision_width_override + attack_range) * sprite.pixel_size / 2.0
 	if collision_height_override == 0:
 		collision_shape.shape.height = sprite_size.y * sprite.pixel_size
+		interaction_shape.get_node("iCollision").shape.height = (sprite_size.y + interaction_range) * sprite.pixel_size
+		attack_shape.get_node("aCollision").shape.height = (sprite_size.y + attack_range) * sprite.pixel_size
 	else:
 		collision_shape.shape.height = collision_height_override * sprite.pixel_size
+		interaction_shape.get_node("iCollision").shape.height = (collision_height_override + interaction_range) * sprite.pixel_size
+		attack_shape.get_node("aCollision").shape.height = (collision_height_override + attack_range) * sprite.pixel_size
 	if collision_height_offsety != 0:
 		collision_shape.position.y = collision_height_offsety * sprite.pixel_size #-collision_shape.shape.height # -sprite_size.y * sprite.pixel_size # Vector pointing along the Y axis = 
+		interaction_shape.position.y = collision_height_offsety * sprite.pixel_size
+		attack_shape.position.y = collision_height_offsety * sprite.pixel_size
+		
+	#interaction_shape.process_mode = Node.PROCESS_MODE_DISABLED
+	#attack_shape.process_mode = Node.PROCESS_MODE_DISABLED
 	
+	#interaction_shape.get_node("Collision").shape.height += 99
+		
 	force_animation("idle")
 
 # Called when the node enters the scene tree for the first time.
@@ -84,14 +101,16 @@ func _ready():
 func update_animation():
 	play_animation(sprite.animation)
 	
-func force_animation(name):	
+func force_animation(name, frame=null):	
 	animation_states[sprite.animation] = sprite.frame
 	animation_playing = name
 	sprite.play(name + animation_modifier)
-	if(sprite.animation in animation_states):
+	if(sprite.animation in animation_states and frame == null):
 		sprite.frame = animation_states[sprite.animation]
-
-func play_animation(name):
+	elif frame != null:
+		sprite.frame = frame
+			
+func play_animation(name, frame=null):
 	# dont update animation if we want to play the same again
 	if name + animation_modifier == sprite.animation:
 		return
@@ -101,12 +120,20 @@ func play_animation(name):
 	if sprite.sprite_frames.has_animation(name):
 		animation_playing = name
 		sprite.play(name + animation_modifier)
+		if parent.name == "Drunkard": print(parent.name + " anim: " + name + animation_modifier)
 		# set frame if already stored
-		if(sprite.animation in animation_states):
+		if(sprite.animation in animation_states and frame == null):
 			sprite.frame = animation_states[sprite.animation]
+		elif frame != null:
+			sprite.frame = frame
 	
 
 func process_movement(delta):
+	var obj = get_parent()
+	#if obj.name in ["Player", "Drunkard"]:
+	#	print(obj.name + ": L2" + str(get_node("../Body").global_transform.origin))
+	#	print(obj.name + ": G" + str(body.global_transform.origin))
+	#	print(obj.name + ": L" + str(obj.global_transform.origin))
 	# We create a local variable to store the input direction.
 	
 	# We check for each move input and update the direction accordingly.
@@ -170,23 +197,24 @@ func process_movement(delta):
 			
 
 	
-
-	#if(target_velocity == Vector3.ZERO and old_target_velocity != Vector3.ZERO):
-	if(target_velocity == Vector3.ZERO):
-		play_animation("idle")
-	#if(target_velocity != Vector3.ZERO and old_target_velocity == Vector3.ZERO):
-		#play_animation("move_side")
-	else:
-		var target_velocity_noy = Vector3(target_velocity.x, 0, target_velocity.z)
-		var angle = (target_velocity_noy.signed_angle_to(Vector3(1,0,0),Vector3(0,1,0)) + PI) / 2
-	
-		var anim_dir = snapped(angle / PI * (8 - 0.25), 1) + 1
-		if anim_dir == 9 or anim_dir == 8 or anim_dir == 1 or anim_dir == 2: play_animation("move_side")
-		if anim_dir == 3: play_animation("move_up")
-		if anim_dir == 4 or anim_dir == 5 or anim_dir == 6: play_animation("move_side")
-		if anim_dir == 7: play_animation("move_down")
+	if(animation_use_move):
+		if(target_velocity == Vector3.ZERO):
+			# only reset animation to idle if we were playing generic moving animation
+			if(animation_playing in ["move_up", "move_down", "move_side", "move_attack"]):
+				play_animation("idle")
+		else:
+			var target_velocity_noy = Vector3(target_velocity.x, 0, target_velocity.z)
+			var angle = (target_velocity_noy.signed_angle_to(Vector3(1,0,0),Vector3(0,1,0)) + PI) / 2
 		
-	if target_velocity.x >= 0:
+			var anim_dir = snapped(angle / PI * (8 - 0.25), 1) + 1
+			if anim_dir == 9: anim_dir = 1
+			
+			if anim_dir == 8 or anim_dir == 1 or anim_dir == 2: play_animation("move_side")
+			if anim_dir == 3: play_animation("move_up")
+			if anim_dir == 4 or anim_dir == 5 or anim_dir == 6: play_animation("move_side")
+			if anim_dir == 7: play_animation("move_down")
+		
+	if target_velocity.x > 0:
 		sprite.flip_h = true
 	if target_velocity.x < 0:
 		sprite.flip_h = false
@@ -195,7 +223,8 @@ func process_movement(delta):
 	body.velocity = target_velocity
 	var collision_occured = body.move_and_slide()
 	
-	# Interactive collision detection
+	'''
+	# Interactive collision detection - based on physics bodies and simulated movement
 	var collision_results = body.move_and_collide(target_velocity * delta * 2, true)
 	if collision_results:
 		var test = collision_results.get_collision_count()
@@ -211,7 +240,21 @@ func process_movement(delta):
 			elif(parent.has_method("collision_generic_callback")):
 				# collided with something, run generic method
 				parent.collision_generic_callback(collider)
-						
+	'''	
+	# Interactive collision detection - based on area test
+	var objects_to_interact = interaction_shape.get_overlapping_bodies()
+	for object in objects_to_interact:
+		if(object != body):
+			var collider = object
+			if (parent.has_method("collision_DynamicObject_callback") and
+				collider != null and
+				collider.get_script() != null and
+				collider.get_script().get_path() == "res://Scripts/DynamicObject.gd"):
+				# collided with DynamicObject, run method dedicated for our nice objects
+				parent.collision_DynamicObject_callback(collider.get_parent()) # parent will be DynamicObject node
+			elif(parent.has_method("collision_generic_callback")):
+				# collided with something, run generic method
+				parent.collision_generic_callback(collider)
 
 func _physics_process(delta):
 	if(!initialized):
@@ -234,4 +277,3 @@ func _process(delta):
 	
 	
 	#print(collision_shape.transform)
-
