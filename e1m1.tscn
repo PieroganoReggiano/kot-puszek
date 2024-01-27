@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bff0r2nv5n3nv"]
+[gd_scene load_steps=14 format=3 uid="uid://bff0r2nv5n3nv"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_03oag"]
 [ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="2_sg15i"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="8_2rudo"]
 [ext_resource type="SpriteFrames" uid="uid://d1qiao6y7snn2" path="res://Images/Can/Frames.tres" id="9_aitfx"]
 [ext_resource type="PackedScene" uid="uid://bqdogswsqsf8q" path="res://Blockade.tscn" id="11_g16fm"]
+[ext_resource type="PackedScene" uid="uid://n6qwde4pj4k0" path="res://smietnik.tscn" id="12_ni4wl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4hjd"]
 size = Vector3(512, 2, 512)
@@ -197,3 +198,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 2, 119)
 
 [node name="Blockade9" parent="Blokady" instance=ExtResource("11_g16fm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 2, 117)
+
+[node name="DynamicObject" parent="." instance=ExtResource("12_ni4wl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162, 1.8, 108)

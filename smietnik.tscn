@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://n6qwde4pj4k0"]
+
+[ext_resource type="ArrayMesh" uid="uid://0i7gn1vw0547" path="res://smietnik.obj" id="2_f77au"]
+[ext_resource type="Texture2D" uid="uid://cwinsnrojot3k" path="res://levele-wip/tileset.png" id="2_xlhys"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82l5p"]
+albedo_texture = ExtResource("2_xlhys")
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+uv1_offset = Vector3(0.563, 0.094, 0)
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iunlk"]
+size = Vector3(0.8, 1.6, 0.8)
+
+[node name="Smietnik" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000655711, 0.00824597, -0.00357354)
+mass = 3.95
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_82l5p")
+mesh = ExtResource("2_f77au")
+skeleton = NodePath("")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_iunlk")
