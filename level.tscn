@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://clt23cavswubg"]
+[gd_scene load_steps=25 format=3 uid="uid://clt23cavswubg"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_wqg10"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]
@@ -13,7 +13,9 @@
 [ext_resource type="Script" path="res://Scripts/Objects/Zombie.gd" id="10_h2cjh"]
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="10_mh80m"]
 [ext_resource type="SpriteFrames" uid="uid://ca8ep5ww46ysg" path="res://Images/Zombie/Frames.tres" id="11_nd2gi"]
+[ext_resource type="Texture2D" uid="uid://laike43xpm0k" path="res://Images/UI/healthbar10.png" id="14_kl5n7"]
 [ext_resource type="Texture2D" uid="uid://c3wuh8o08c4jg" path="res://meniusy/butonik2.png" id="14_rt6u4"]
+[ext_resource type="Texture2D" uid="uid://b8cw2kgoyual1" path="res://Images/UI/frames/healthbar11.png" id="14_yoerg"]
 [ext_resource type="Texture2D" uid="uid://bvpy80pqxem3n" path="res://meniusy/butonik-najech2.png" id="15_5hgdq"]
 [ext_resource type="FontFile" uid="uid://dbaodg3evongo" path="res://foncik/PixelifySans-Medium.ttf" id="15_vtcd2"]
 [ext_resource type="AudioStream" uid="uid://rcat6rmlixjo" path="res://meniusy/pum_menu.ogg" id="17_u0cr5"]
@@ -142,7 +144,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_8f11n")
 
+[node name="Control" type="Control" parent="ui/koto_ui"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/koto_ui/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 32.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+theme_override_constants/margin_left = 19
+theme_override_constants/margin_bottom = 320
+
+[node name="Empty" type="TextureRect" parent="ui/koto_ui/Control/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_kl5n7")
+stretch_mode = 4
+
+[node name="Animatione" type="TextureRect" parent="ui/koto_ui/Control/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("14_yoerg")
+stretch_mode = 4
+
 [node name="VBoxContainer" type="VBoxContainer" parent="ui/koto_ui"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -230,5 +260,10 @@ text = "Sraken"
 [node name="MeniuMusik" type="AudioStreamPlayer2D" parent="ui"]
 stream = ExtResource("17_u0cr5")
 
+[node name="Timer" type="Timer" parent="ui"]
+wait_time = 0.35
+autostart = true
+
 [connection signal="pressed" from="ui/PauzaMeniu/CenterContainer/VBoxContainer/Return" to="ui" method="_on_return_pressed"]
 [connection signal="pressed" from="ui/PauzaMeniu/CenterContainer/VBoxContainer/Meniu" to="ui" method="_on_meniu_pressed"]
+[connection signal="timeout" from="ui/Timer" to="ui/koto_ui" method="_on_timer_timeout"]
