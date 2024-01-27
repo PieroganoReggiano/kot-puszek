@@ -9,7 +9,7 @@ extends Node3D
 @export var jump_speed:float = 35
 @export var gravity:float = 10
 
-@onready var body = get_node("Body")
+@onready var body = self.get_node("Body")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

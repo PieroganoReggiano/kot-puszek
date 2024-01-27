@@ -36,11 +36,11 @@ var move_jump:bool = false
 # ---- ----
 
 # ---- objects ----
-@onready var sprite = get_node("sprite_center/Sprite")
-@onready var sprite_center = get_node("sprite_center")
-@onready var collision_shape = get_node("Collision")
 @onready var body = self
-@onready var parent = get_parent()
+@onready var sprite = body.get_node("sprite_center/Sprite")
+@onready var sprite_center = body.get_node("sprite_center")
+@onready var collision_shape = body.get_node("Collision")
+@onready var parent = body.get_parent()
 # ---- ----
 
 var sprite_size
@@ -58,8 +58,9 @@ func init():
 	sprite.sprite_frames = sprite_frames
 	sprite_size = sprite.sprite_frames.get_frame_texture("idle", 0).get_size()
 	collision_shape.shape.height = sprite_size.y * sprite.pixel_size
-	collision_shape.shape.radius = sprite_size.x * sprite.pixel_size
-	collision_shape.position.y = 0 #-collision_shape.shape.height # -sprite_size.y * sprite.pixel_size # Vector pointing along the Y axis = 
+	collision_shape.shape.radius = sprite_size.x * sprite.pixel_size / 2.0
+
+	collision_shape.position.y = 0.01 #-collision_shape.shape.height # -sprite_size.y * sprite.pixel_size # Vector pointing along the Y axis = 
 	play_animation("idle")
 
 # Called when the node enters the scene tree for the first time.
@@ -219,5 +220,5 @@ func _process(delta):
 	#sprite_center.rotation.y = 33
 	
 	
-	print(collision_shape.transform)
+	#print(collision_shape.transform)
 

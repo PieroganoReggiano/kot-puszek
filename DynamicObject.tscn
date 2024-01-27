@@ -3,12 +3,14 @@
 [ext_resource type="Script" path="res://Scripts/DynamicObject.gd" id="1_gr72u"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qcpx3"]
+resource_local_to_scene = true
 height = 0.16
 radius = 0.08
 
 [node name="DynamicObject" type="Node3D"]
 
 [node name="Body" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000655711, 0.00824597, -0.00357354)
 script = ExtResource("1_gr72u")
 gravity_enabled = null
 gravity = false
@@ -21,7 +23,6 @@ jump_speed = null
 [node name="Sprite" type="AnimatedSprite3D" parent="Body/sprite_center"]
 billboard = 1
 texture_filter = 0
-animation = &""
 
 [node name="Collision" type="CollisionShape3D" parent="Body"]
 shape = SubResource("CylinderShape3D_qcpx3")
