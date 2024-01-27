@@ -29,7 +29,7 @@ size = Vector3(50, 1, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2oot"]
 size = Vector3(0.2, 1, 0.2)
 
-[node name="Level" type="Node3D"]
+[node name="Level2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258103, 0.00458896, -4.94257)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]

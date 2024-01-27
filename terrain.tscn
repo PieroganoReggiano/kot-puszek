@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2w6yntn5huok"]
 
 [ext_resource type="Shader" path="res://level-wip.gdshader" id="1_qmdan"]
-[ext_resource type="Texture2D" uid="uid://dl5i4vcah08h1" path="res://levele-wip/e1m1.png" id="2_3thyl"]
-[ext_resource type="Texture2D" uid="uid://ct2w5ddstxjfn" path="res://levele-wip/e1m1-tile-choice.png" id="3_htyqn"]
-[ext_resource type="Texture2D" uid="uid://cwinsnrojot3k" path="res://levele-wip/tileset.png" id="4_fswv1"]
+[ext_resource type="Texture2D" uid="uid://dl5i4vcah08h1" path="res://levele-wip/e1m1.png" id="2_r70ov"]
+[ext_resource type="Texture2D" uid="uid://ct2w5ddstxjfn" path="res://levele-wip/e1m1-tile-choice.png" id="3_aqnif"]
+[ext_resource type="Texture2D" uid="uid://cwinsnrojot3k" path="res://levele-wip/tileset.png" id="4_8snce"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kp7w7"]
 render_priority = 0
@@ -11,9 +11,9 @@ shader = ExtResource("1_qmdan")
 shader_parameter/map_size = Vector2(512, 512)
 shader_parameter/tile_map_size = Vector2(512, 512)
 shader_parameter/skip_tiles = false
-shader_parameter/map = ExtResource("2_3thyl")
-shader_parameter/map_tile_choice = ExtResource("3_htyqn")
-shader_parameter/tiles = ExtResource("4_fswv1")
+shader_parameter/map = ExtResource("2_r70ov")
+shader_parameter/map_tile_choice = ExtResource("3_aqnif")
+shader_parameter/tiles = ExtResource("4_8snce")
 
 [sub_resource type="QuadMesh" id="QuadMesh_4072h"]
 material = SubResource("ShaderMaterial_kp7w7")

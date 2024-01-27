@@ -31,14 +31,14 @@ offset = Vector3(0, 5.5, 6)
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
 
 [node name="Player" parent="." instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -165.776, 1.25083, 111.919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164, 1.1, 112)
 script = ExtResource("3_kmk7j")
 sprite_frames = ExtResource("4_jd7q7")
 gravity_enabled = true
-speed = 14.0
+speed = 7.0
 acceleration = 6.0
 deceleration = 10.0
-jump_speed = 50.0
+jump_speed = 60.0
 
 [node name="Floor" type="StaticBody3D" parent="."]
 axis_lock_linear_x = true
@@ -141,8 +141,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126, 1, 84)
 size = Vector3(9, 10, 18)
 
 [node name="Budyn2" parent="Budyny" instance=ExtResource("6_ygdt8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 1, 102)
-size = Vector3(6, 10, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -187, 1, 100)
+size = Vector3(8, 10, 16)
 
 [node name="Budyn23" parent="Budyny" instance=ExtResource("6_ygdt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 1, 67)
@@ -157,7 +157,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -191, 1, 126)
 size = Vector3(31, 10, 11)
 
 [node name="Drunkard" parent="." instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -170.611, 0.646405, 109.946)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169, 1, 109)
 script = ExtResource("6_65nb8")
 sprite_frames = ExtResource("7_xl12k")
 gravity_enabled = true
