@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://clt23cavswubg"]
+[gd_scene load_steps=23 format=3 uid="uid://clt23cavswubg"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_wqg10"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]
@@ -14,6 +14,9 @@
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="10_mh80m"]
 [ext_resource type="SpriteFrames" uid="uid://ca8ep5ww46ysg" path="res://Images/Zombie/Frames.tres" id="11_nd2gi"]
 [ext_resource type="Texture2D" uid="uid://c3wuh8o08c4jg" path="res://meniusy/butonik2.png" id="14_rt6u4"]
+[ext_resource type="Texture2D" uid="uid://bvpy80pqxem3n" path="res://meniusy/butonik-najech2.png" id="15_5hgdq"]
+[ext_resource type="FontFile" uid="uid://dbaodg3evongo" path="res://foncik/PixelifySans-Medium.ttf" id="15_vtcd2"]
+[ext_resource type="AudioStream" uid="uid://rcat6rmlixjo" path="res://meniusy/pum_menu.ogg" id="17_u0cr5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v18d"]
 albedo_texture = ExtResource("5_w60u6")
@@ -28,6 +31,10 @@ size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2oot"]
 size = Vector3(0.2, 1, 0.2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_trccm"]
+font = ExtResource("15_vtcd2")
+font_size = 48
 
 [node name="Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258103, 0.00458896, -4.94257)
@@ -117,6 +124,7 @@ speed = 1.0
 target = NodePath("../Player")
 
 [node name="ui" type="Control" parent="."]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,7 +150,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="in_game_menu" type="CenterContainer" parent="ui"]
+[node name="PauzaMeniu" type="Control" parent="ui"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -151,20 +159,76 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ui/in_game_menu"]
+[node name="ColorRect" type="ColorRect" parent="ui/PauzaMeniu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.345098, 0.345098, 0.345098, 0.419608)
+
+[node name="CenterContainer" type="CenterContainer" parent="ui/PauzaMeniu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/PauzaMeniu/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 34
 
-[node name="TextureButton" type="TextureButton" parent="ui/in_game_menu/VBoxContainer"]
+[node name="Return" type="TextureButton" parent="ui/PauzaMeniu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("14_rt6u4")
+texture_pressed = ExtResource("15_5hgdq")
+texture_hover = ExtResource("15_5hgdq")
 stretch_mode = 4
 
-[node name="TextureButton2" type="TextureButton" parent="ui/in_game_menu/VBoxContainer"]
+[node name="Label" type="Label" parent="ui/PauzaMeniu/CenterContainer/VBoxContainer/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wznów"
+label_settings = SubResource("LabelSettings_trccm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Meniu" type="TextureButton" parent="ui/PauzaMeniu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("14_rt6u4")
+texture_pressed = ExtResource("15_5hgdq")
+texture_hover = ExtResource("15_5hgdq")
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="ui/in_game_menu"]
+[node name="Label" type="Label" parent="ui/PauzaMeniu/CenterContainer/VBoxContainer/Meniu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Meniu"
+label_settings = SubResource("LabelSettings_trccm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="ui/PauzaMeniu/CenterContainer"]
+visible = false
 layout_mode = 2
 text = "Sraken"
+
+[node name="MeniuMusik" type="AudioStreamPlayer2D" parent="ui"]
+stream = ExtResource("17_u0cr5")
+
+[connection signal="pressed" from="ui/PauzaMeniu/CenterContainer/VBoxContainer/Return" to="ui" method="_on_return_pressed"]
+[connection signal="pressed" from="ui/PauzaMeniu/CenterContainer/VBoxContainer/Meniu" to="ui" method="_on_meniu_pressed"]
