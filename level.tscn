@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkw4hey0njdd4"]
+[gd_scene load_steps=16 format=3 uid="uid://dkw4hey0njdd4"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_wqg10"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="6_gxtd0"]
 [ext_resource type="SpriteFrames" uid="uid://d1qiao6y7snn2" path="res://Images/Can/Frames.tres" id="7_bm1rs"]
 [ext_resource type="SpriteFrames" uid="uid://vc0qvvrvsf6i" path="res://Images/Bum/Frames.tres" id="7_f3o8n"]
+[ext_resource type="Script" path="res://Scripts/Objects/Zombie.gd" id="10_h2cjh"]
+[ext_resource type="SpriteFrames" uid="uid://ca8ep5ww46ysg" path="res://Images/Zombie/Frames.tres" id="11_nd2gi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v18d"]
 albedo_texture = ExtResource("5_w60u6")
@@ -39,7 +41,7 @@ offset = Vector3(0, 0.3, 0.8)
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
 
 [node name="Player" parent="." instance=ExtResource("3_cbims")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3913, 1.25084, -0.053144)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17123, 1.25084, -0.053144)
 script = ExtResource("4_3etlu")
 sprite_frames = ExtResource("2_58mns")
 gravity_enabled = true
@@ -92,11 +94,21 @@ script = ExtResource("6_6xb56")
 sprite_frames = ExtResource("7_f3o8n")
 gravity_enabled = true
 
-[node name="timer" type="Timer" parent="Drunkard"]
-
-[node name="Can1" parent="." instance=ExtResource("3_cbims")]
+[node name="Can" parent="." instance=ExtResource("3_cbims")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.609465, 0)
 script = ExtResource("6_gxtd0")
 sprite_frames = ExtResource("7_bm1rs")
 gravity_enabled = null
 gravity = false
+
+[node name="Zombie" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.317196, 1.27723, 0.743548)
+script = ExtResource("10_h2cjh")
+sprite_frames = ExtResource("11_nd2gi")
+
+[node name="ZombieDynamic" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42549, 0.418671, 0)
+script = ExtResource("10_h2cjh")
+sprite_frames = ExtResource("11_nd2gi")
+speed = 1.0
+target = NodePath("../Player")

@@ -3,26 +3,25 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sroqcat7w6sf"
-path.s3tc="res://.godot/imported/cat_idle68.png-86ed19a418e28a4b6ce758c07b11ae57.s3tc.ctex"
+path="res://.godot/imported/cat_idle68.png-86ed19a418e28a4b6ce758c07b11ae57.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Images/Player/Frames/cat_idle/cat_idle68.png"
-dest_files=["res://.godot/imported/cat_idle68.png-86ed19a418e28a4b6ce758c07b11ae57.s3tc.ctex"]
+dest_files=["res://.godot/imported/cat_idle68.png-86ed19a418e28a4b6ce758c07b11ae57.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

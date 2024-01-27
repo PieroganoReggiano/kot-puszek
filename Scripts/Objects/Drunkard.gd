@@ -11,23 +11,26 @@ extends Node3D
 
 @onready var body = get_node("Body")
 
+var anim_timer:Timer = Timer.new()
 var beers_drank:int = 0
 
 func anim_drink():
+	anim_timer.timeout.disconnect(anim_idle)
+	anim_timer.timeout.disconnect(anim_laugh)
 	body.play_animation("drink")
-	$timer.one_shot = true
-	$timer.timeout.connect(anim_laugh)
-	$timer.set_wait_time(2)
-	$timer.start()
+	anim_timer.one_shot = true
+	anim_timer.timeout.connect(anim_laugh)
+	anim_timer.set_wait_time(2)
+	anim_timer.start()
 func anim_laugh():
 	body.play_animation("laugh")
-	$timer.one_shot = true
-	$timer.timeout.disconnect(anim_laugh)
-	$timer.timeout.connect(anim_idle)
-	$timer.set_wait_time(2)
-	$timer.start()
+	anim_timer.one_shot = true
+	anim_timer.timeout.disconnect(anim_laugh)
+	anim_timer.timeout.connect(anim_idle)
+	anim_timer.set_wait_time(2)
+	anim_timer.start()
 func anim_idle():
-	$timer.timeout.disconnect(anim_idle)
+	anim_timer.timeout.disconnect(anim_idle)
 	body.play_animation("idle")
 	
 	
@@ -37,6 +40,8 @@ func drink_beer():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_child(anim_timer)
+	
 	body.sprite_frames = sprite_frames
 	body.gravity_enabled = gravity_enabled
 	body.gravity = gravity
@@ -44,6 +49,8 @@ func _ready():
 	body.jump_speed = jump_speed
 	body.acceleration = acceleration
 	body.deceleration = deceleration
+	
+	body.collision_width_override = 16
 	
 	body.init()
 
