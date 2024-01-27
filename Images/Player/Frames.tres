@@ -156,6 +156,14 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("1_mav0a")
+}],
+"loop": true,
+"name": &"Idle_TEST",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_ljv1g")
 }, {
 "duration": 1.0,
@@ -594,16 +602,8 @@ animations = [{
 "texture": ExtResource("146_vw1ry")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"idle",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_mav0a")
-}],
-"loop": true,
-"name": &"Idle_TEST",
-"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -619,6 +619,6 @@ animations = [{
 "texture": ExtResource("150_cdj54")
 }],
 "loop": true,
-"name": &"Run",
+"name": &"move_side",
 "speed": 8.0
 }]

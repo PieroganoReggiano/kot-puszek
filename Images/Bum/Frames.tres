@@ -1,0 +1,40 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://vc0qvvrvsf6i"]
+
+[ext_resource type="Texture2D" uid="uid://cgd6p5ttcvajf" path="res://Images/Bum/frames/bum_drink/bum_drink1.png" id="1_elnwo"]
+[ext_resource type="Texture2D" uid="uid://cx8devg62souv" path="res://Images/Bum/frames/bum_drink/bum_drink2.png" id="2_yh3hy"]
+[ext_resource type="Texture2D" uid="uid://1q3bafl3ylc8" path="res://Images/Bum/frames/bum1.png" id="3_qgqaw"]
+[ext_resource type="Texture2D" uid="uid://dnyu0f66dexkx" path="res://Images/Bum/frames/bum_laugh/bum_laugh1.png" id="4_b14yl"]
+[ext_resource type="Texture2D" uid="uid://0ffi3r66vhui" path="res://Images/Bum/frames/bum_laugh/bum_laugh2.png" id="5_awppd"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_elnwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yh3hy")
+}],
+"loop": true,
+"name": &"drink",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qgqaw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_b14yl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_awppd")
+}],
+"loop": true,
+"name": &"laugh",
+"speed": 5.0
+}]
