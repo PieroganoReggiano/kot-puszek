@@ -18,7 +18,7 @@ shader_parameter/tiles = ExtResource("4_fswv1")
 [sub_resource type="QuadMesh" id="QuadMesh_4072h"]
 material = SubResource("ShaderMaterial_kp7w7")
 
-[node name="LevelRoot" type="Node3D"]
+[node name="TerrainRoot" type="Node3D"]
 
 [node name="Terrain" type="MeshInstance3D" parent="."]
 transform = Transform3D(512, 0, 0, 0, -2.23802e-05, 512, 0, -512, -2.23802e-05, 0, 0, 0)
