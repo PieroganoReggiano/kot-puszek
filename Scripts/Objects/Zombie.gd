@@ -1,7 +1,6 @@
 @tool
 extends Node3D
 
-@export var sprite_frames:SpriteFrames
 @export var speed:float = 0.4
 @export var acceleration:float = 2
 @export var deceleration:float = 4
@@ -22,7 +21,7 @@ func _ready():
 		logic_timer.set_wait_time(2)
 		logic_timer.start()
 		
-	body.sprite_frames = sprite_frames
+	body.sprite_frames = load("res://Images/Zombie/Frames.tres")
 	body.gravity_enabled = true
 	body.gravity = gravity
 	body.speed = speed
@@ -37,6 +36,7 @@ func _ready():
 func _physics_process(delta):
 	if target != null:
 		var target_origin = target.get_node("Body").global_transform.origin
+		#print("ZOMBIE TARGET: " + str(target_origin))
 		var object_origin = body.global_transform.origin
 		var target_origin_plane = Vector3(target_origin.x, 0, target_origin.z)
 		var tobject_origin_plane = Vector3(object_origin.x, 0, object_origin.z)
@@ -48,7 +48,7 @@ func _physics_process(delta):
 		body.move_down = false
 		body.move_jump = false
 		
-		print(diff.length())
+		#print(diff.length())
 		
 		if diff.length() > 0.2:
 			var angle = (diff.signed_angle_to(Vector3(1,0,0),Vector3(0,1,0)) + PI) / 2
@@ -65,6 +65,10 @@ func _process(delta):
 	if not Engine.is_editor_hint():
 		pass
 
+func take_attack(attacker):
+	if attacker.points != null:
+		attacker.points += 50
+	queue_free()
 
 func process_state_machine():
 	# if no target, move randomly
