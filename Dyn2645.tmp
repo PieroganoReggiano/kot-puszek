@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/DynamicObject.gd" id="1_gr72u"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qcpx3"]
-height = 0.16
+height = 0.24
 radius = 0.08
 
 [node name="DynamicObject" type="Node3D"]
@@ -24,4 +24,5 @@ texture_filter = 0
 animation = &""
 
 [node name="Collision" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.123612, 0)
 shape = SubResource("CylinderShape3D_qcpx3")

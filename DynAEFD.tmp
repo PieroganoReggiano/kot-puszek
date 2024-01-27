@@ -10,9 +10,6 @@ radius = 0.08
 
 [node name="Body" type="CharacterBody3D" parent="."]
 script = ExtResource("1_gr72u")
-gravity_enabled = null
-gravity = false
-jump_speed = null
 
 [node name="node_center" type="Node3D" parent="Body"]
 
@@ -23,5 +20,6 @@ billboard = 1
 texture_filter = 0
 animation = &""
 
-[node name="Collision" type="CollisionShape3D" parent="Body"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0685758, 0)
 shape = SubResource("CylinderShape3D_qcpx3")

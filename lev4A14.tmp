@@ -1,14 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkw4hey0njdd4"]
+[gd_scene load_steps=12 format=3 uid="uid://dkw4hey0njdd4"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_wqg10"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]
 [ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="3_cbims"]
 [ext_resource type="Script" path="res://Scripts/Objects/Player.gd" id="4_3etlu"]
 [ext_resource type="Texture2D" uid="uid://1as6p3f2yha0" path="res://Images/Floor/wall2_mid.png" id="5_w60u6"]
-[ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_6xb56"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="6_gxtd0"]
 [ext_resource type="SpriteFrames" uid="uid://d1qiao6y7snn2" path="res://Images/Can/Frames.tres" id="7_bm1rs"]
-[ext_resource type="SpriteFrames" uid="uid://vc0qvvrvsf6i" path="res://Images/Bum/Frames.tres" id="7_f3o8n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v18d"]
 albedo_texture = ExtResource("5_w60u6")
@@ -25,7 +23,7 @@ size = Vector3(50, 1, 50)
 size = Vector3(0.2, 1, 0.2)
 
 [node name="Level" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258103, 0.00458896, -4.94257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.257895, 4.76837e-07, -4.94054)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00541, 0)
@@ -39,10 +37,12 @@ offset = Vector3(0, 0.3, 0.8)
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
 
 [node name="Player" parent="." instance=ExtResource("3_cbims")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3913, 1.25084, -0.053144)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3913, 0.796265, -0.053144)
 script = ExtResource("4_3etlu")
 sprite_frames = ExtResource("2_58mns")
 gravity_enabled = true
+jump_speed = 3.0
+gravity = 10.0
 
 [node name="---- Level terrain ----" type="Node" parent="."]
 
@@ -86,16 +86,8 @@ size = Vector3(0.2, 1, 0.2)
 
 [node name="---- Level interactive ----" type="Node" parent="."]
 
-[node name="Drunkard" parent="." instance=ExtResource("3_cbims")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.549434, 0.646413, 0)
-script = ExtResource("6_6xb56")
-sprite_frames = ExtResource("7_f3o8n")
-gravity_enabled = true
-
-[node name="timer" type="Timer" parent="Drunkard"]
-
 [node name="Can1" parent="." instance=ExtResource("3_cbims")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.609465, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.646413, 0)
 script = ExtResource("6_gxtd0")
 sprite_frames = ExtResource("7_bm1rs")
 gravity_enabled = null
