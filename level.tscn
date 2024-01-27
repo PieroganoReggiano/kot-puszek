@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://clt23cavswubg"]
 
-[ext_resource type="PackedScene" uid="uid://b1w1apcywo4ow" path="res://default_camera.tscn" id="1_rlvci"]
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_5ff0w"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]
 [ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="3_cbims"]
 [ext_resource type="Script" path="res://Scripts/Objects/Player.gd" id="4_3etlu"]
@@ -41,8 +41,11 @@ font_size = 48
 [node name="Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258103, 0.00458896, -4.94257)
 
-[node name="Camera3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_rlvci")]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_5ff0w")
+speed = 60.0
 target = NodePath("../Puszek")
+offset = Vector3(0, 6, 5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
