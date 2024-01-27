@@ -1,0 +1,81 @@
+[gd_scene load_steps=15 format=3 uid="uid://bff0r2nv5n3nv"]
+
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_oc8dp"]
+[ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="2_sg15i"]
+[ext_resource type="Script" path="res://Scripts/Objects/Player.gd" id="3_kmk7j"]
+[ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="4_jd7q7"]
+[ext_resource type="PackedScene" uid="uid://c2w6yntn5huok" path="res://terrain.tscn" id="5_svdbj"]
+[ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_65nb8"]
+[ext_resource type="Shader" path="res://budyn1.gdshader" id="6_i6ho7"]
+[ext_resource type="Texture2D" uid="uid://cwinsnrojot3k" path="res://levele-wip/tileset.png" id="7_t36lm"]
+[ext_resource type="SpriteFrames" uid="uid://vc0qvvrvsf6i" path="res://Images/Bum/Frames.tres" id="7_xl12k"]
+[ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="8_2rudo"]
+[ext_resource type="SpriteFrames" uid="uid://d1qiao6y7snn2" path="res://Images/Can/Frames.tres" id="9_aitfx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4hjd"]
+size = Vector3(512, 2, 512)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2oot"]
+size = Vector3(6, 10, 9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_370j4"]
+render_priority = 0
+shader = ExtResource("6_i6ho7")
+shader_parameter/tile_choice = Vector2i(1, 0)
+shader_parameter/tile_map_size = Vector2(512, 512)
+shader_parameter/tiles = ExtResource("7_t36lm")
+
+[node name="Level" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258103, 0.00458896, -4.94257)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00541, 0)
+current = true
+script = ExtResource("1_oc8dp")
+speed = 50.0
+target = NodePath("../Player")
+offset = Vector3(0, 0.6, 1.6)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
+
+[node name="Player" parent="." instance=ExtResource("2_sg15i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.018, 1.25083, 108.674)
+script = ExtResource("3_kmk7j")
+sprite_frames = ExtResource("4_jd7q7")
+gravity_enabled = true
+speed = 2.8
+acceleration = 4.0
+deceleration = 8.0
+jump_speed = 45.0
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="TerrainRoot" parent="Floor" instance=ExtResource("5_svdbj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_t4hjd")
+
+[node name="Budyn1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137, 6, 108.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Budyn1"]
+shape = SubResource("BoxShape3D_l2oot")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Budyn1"]
+size = Vector3(6, 10, 9)
+material = SubResource("ShaderMaterial_370j4")
+
+[node name="Drunkard" parent="." instance=ExtResource("2_sg15i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.639, 0.646405, 108.727)
+script = ExtResource("6_65nb8")
+sprite_frames = ExtResource("7_xl12k")
+gravity_enabled = true
+
+[node name="Can" parent="." instance=ExtResource("2_sg15i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.189, 0.609457, 108.727)
+script = ExtResource("8_2rudo")
+sprite_frames = ExtResource("9_aitfx")
+gravity_enabled = null
+gravity = false
