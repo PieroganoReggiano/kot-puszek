@@ -41,7 +41,6 @@ func drink_beer():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_child(anim_timer)
-	
 	body.sprite_frames = sprite_frames
 	body.gravity_enabled = gravity_enabled
 	body.gravity = gravity
