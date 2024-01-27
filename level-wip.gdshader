@@ -38,5 +38,8 @@ void fragment() {
 		tile_colour = texture(tiles, uv);
 		
 		ALBEDO.rgb = tile_colour.rgb;
+		ALBEDO.rgb *= 0.8;
 	}
+	
+	
 }

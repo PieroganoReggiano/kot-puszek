@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bff0r2nv5n3nv"]
+[gd_scene load_steps=12 format=3 uid="uid://bff0r2nv5n3nv"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_oc8dp"]
 [ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="2_sg15i"]
@@ -6,8 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="4_jd7q7"]
 [ext_resource type="PackedScene" uid="uid://c2w6yntn5huok" path="res://terrain.tscn" id="5_svdbj"]
 [ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_65nb8"]
-[ext_resource type="Shader" path="res://budyn1.gdshader" id="6_i6ho7"]
-[ext_resource type="Texture2D" uid="uid://cwinsnrojot3k" path="res://levele-wip/tileset.png" id="7_t36lm"]
+[ext_resource type="PackedScene" uid="uid://lotnu512ab0q" path="res://budyn.tscn" id="6_ygdt8"]
 [ext_resource type="SpriteFrames" uid="uid://vc0qvvrvsf6i" path="res://Images/Bum/Frames.tres" id="7_xl12k"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="8_2rudo"]
 [ext_resource type="SpriteFrames" uid="uid://d1qiao6y7snn2" path="res://Images/Can/Frames.tres" id="9_aitfx"]
@@ -15,41 +14,39 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4hjd"]
 size = Vector3(512, 2, 512)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_l2oot"]
-size = Vector3(6, 10, 9)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_370j4"]
-render_priority = 0
-shader = ExtResource("6_i6ho7")
-shader_parameter/tile_choice = Vector2i(1, 0)
-shader_parameter/tile_map_size = Vector2(512, 512)
-shader_parameter/tiles = ExtResource("7_t36lm")
-
 [node name="Level" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.258103, 0.00458896, -4.94257)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00541, 0)
 current = true
+fov = 60.0
+near = 0.1
+far = 150.0
 script = ExtResource("1_oc8dp")
 speed = 50.0
 target = NodePath("../Player")
-offset = Vector3(0, 0.6, 1.6)
+offset = Vector3(0, 5.5, 6)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
 
 [node name="Player" parent="." instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.018, 1.25083, 108.674)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -165.776, 1.25083, 111.919)
 script = ExtResource("3_kmk7j")
 sprite_frames = ExtResource("4_jd7q7")
 gravity_enabled = true
-speed = 2.8
-acceleration = 4.0
-deceleration = 8.0
-jump_speed = 45.0
+speed = 14.0
+acceleration = 6.0
+deceleration = 10.0
+jump_speed = 50.0
 
 [node name="Floor" type="StaticBody3D" parent="."]
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 
 [node name="TerrainRoot" parent="Floor" instance=ExtResource("5_svdbj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -57,24 +54,116 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_t4hjd")
 
-[node name="Budyn1" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137, 6, 108.5)
+[node name="Budyny" type="Node" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Budyn1"]
-shape = SubResource("BoxShape3D_l2oot")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Budyn1"]
+[node name="Budyn" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 1, 107)
 size = Vector3(6, 10, 9)
-material = SubResource("ShaderMaterial_370j4")
+
+[node name="Budyn26" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 1, 66)
+size = Vector3(6, 10, 9)
+
+[node name="Budyn27" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 1, 26)
+size = Vector3(6, 10, 9)
+
+[node name="Budyn4" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 1, 126)
+size = Vector3(14, 10, 11)
+
+[node name="Budyn5" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, 104)
+size = Vector3(17, 10, 5)
+
+[node name="Budyn6" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, 109.001)
+size = Vector3(11, 10, 7)
+
+[node name="Budyn7" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107, 1, 103)
+size = Vector3(10, 10, 24)
+
+[node name="Budyn9" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, 59)
+size = Vector3(17, 10, 15)
+
+[node name="Budyn10" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, 46)
+size = Vector3(17, 10, 17)
+
+[node name="Budyn11" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, 35)
+size = Vector3(17, 10, 17)
+
+[node name="Budyn18" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, 14)
+size = Vector3(17, 10, 17)
+
+[node name="Budyn19" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, -6)
+size = Vector3(17, 10, 17)
+
+[node name="Budyn22" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105, 1, -62)
+size = Vector3(10, 10, 17)
+
+[node name="Budyn12" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107, 1, 39)
+size = Vector3(9, 10, 16)
+
+[node name="Budyn14" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105, 1, 17)
+size = Vector3(6, 10, 6)
+
+[node name="Budyn15" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96, 1, 17)
+size = Vector3(10, 10, 6)
+
+[node name="Budyn16" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91, 1, 23)
+size = Vector3(5, 10, 6)
+
+[node name="Budyn17" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92, 1, 39)
+size = Vector3(17, 10, 12)
+
+[node name="Budyn13" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107, 1, 59)
+size = Vector3(23, 10, 32)
+
+[node name="Budyn34" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101, 1, 55)
+size = Vector3(3, 10, 18)
+
+[node name="Budyn8" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126, 1, 84)
+size = Vector3(9, 10, 18)
+
+[node name="Budyn2" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 1, 102)
+size = Vector3(6, 10, 14)
+
+[node name="Budyn23" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 1, 67)
+size = Vector3(6, 10, 14)
+
+[node name="Budyn30" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169, 1, 50)
+size = Vector3(6, 10, 14)
+
+[node name="Budyn3" parent="Budyny" instance=ExtResource("6_ygdt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -191, 1, 126)
+size = Vector3(31, 10, 11)
 
 [node name="Drunkard" parent="." instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.639, 0.646405, 108.727)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -170.611, 0.646405, 109.946)
 script = ExtResource("6_65nb8")
 sprite_frames = ExtResource("7_xl12k")
 gravity_enabled = true
 
 [node name="Can" parent="." instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.189, 0.609457, 108.727)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -158.307, 0.609457, 116.447)
 script = ExtResource("8_2rudo")
 sprite_frames = ExtResource("9_aitfx")
 gravity_enabled = null

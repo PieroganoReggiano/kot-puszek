@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://lotnu512ab0q"]
+
+[ext_resource type="Shader" path="res://budyn1.gdshader" id="1_geukr"]
+[ext_resource type="Script" path="res://budyn.gd" id="1_qfb7o"]
+[ext_resource type="Texture2D" uid="uid://cwinsnrojot3k" path="res://levele-wip/tileset.png" id="2_q6cr0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2oot"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_370j4"]
+render_priority = 0
+shader = ExtResource("1_geukr")
+shader_parameter/tile_choice = Vector2i(1, 0)
+shader_parameter/tile_map_size = Vector2(512, 512)
+shader_parameter/tiles = ExtResource("2_q6cr0")
+
+[node name="Budyn" type="StaticBody3D"]
+script = ExtResource("1_qfb7o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_l2oot")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = SubResource("ShaderMaterial_370j4")

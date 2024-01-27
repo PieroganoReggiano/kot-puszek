@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://clt23cavswubg"]
+[gd_scene load_steps=19 format=3 uid="uid://dkw4hey0njdd4"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_wqg10"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]

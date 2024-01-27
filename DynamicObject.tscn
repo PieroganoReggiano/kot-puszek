@@ -20,7 +20,7 @@ gravity = 0.0
 [node name="sprite_center" type="Node3D" parent="Body"]
 
 [node name="Sprite" type="AnimatedSprite3D" parent="Body/sprite_center"]
-pixel_size = 0.02
+pixel_size = 0.0625
 billboard = 1
 texture_filter = 0
 
