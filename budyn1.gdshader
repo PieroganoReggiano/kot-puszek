@@ -23,6 +23,7 @@ void fragment() {
 	uv += vec2(tile_choice);
 	uv /= vec2(ivec2(tiles_count.x, tiles_count.y));
 	ALBEDO.rgb = texture(tiles, uv.xy).xyz;
+	ALBEDO.rgb *= 0.8;
 }
 
 //void light() {
