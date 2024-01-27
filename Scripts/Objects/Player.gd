@@ -11,6 +11,9 @@ extends Node3D
 
 @onready var body = self.get_node("Body")
 
+# ---- player states ----
+var has_can:bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	body.sprite_frames = sprite_frames
@@ -20,6 +23,10 @@ func _ready():
 	body.jump_speed = jump_speed
 	body.acceleration = acceleration
 	body.deceleration = deceleration
+	body.is_player = true
+	
+	body.collision_width_override = 13
+	
 	body.init()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,6 +49,14 @@ func collision_generic_callback(collider):
 func collision_DynamicObject_callback(object):
 	# detect can
 	print(object.name)
-	if(object.name == "Can1"):
-		object.queue_free()
-	if(object.name == "Drunkard"): object.drink_beer()
+	if(object.name == "Can"):
+		if not has_can:
+			body.animation_modifier = "_can"
+			body.update_animation()
+			object.queue_free()
+			has_can = true
+	if(object.name == "Drunkard"):
+		body.animation_modifier = ""
+		body.update_animation()
+		object.drink_beer()
+		has_can = false

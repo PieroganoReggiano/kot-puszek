@@ -14,6 +14,10 @@ extends Node3D
 @export var deceleration:float = 3
 # The downward acceleration when in the air, in meters per second squared.
 @export var fall_acceleration = 75
+
+@export var collision_width_override:float = 0
+@export var collision_height_override:float = 0
+@export var collision_height_offsety:float = 0
 # ---- ----
 
 # ---- non user-configurable parameters ----
@@ -24,6 +28,9 @@ var jump_acceleration_time:float = 0.016667 * 8.0
 var jump_time_elapsed:float = 99999
 
 var animation_states:Dictionary
+var animation_playing:String = "idle"
+var animation_modifier:String = ""
+
 var target_velocity = Vector3.ZERO
 
 var move_direction = Vector3.ZERO
@@ -57,25 +64,46 @@ func init():
 	animation_states = {}
 	sprite.sprite_frames = sprite_frames
 	sprite_size = sprite.sprite_frames.get_frame_texture("idle", 0).get_size()
-	collision_shape.shape.height = sprite_size.y * sprite.pixel_size
-	collision_shape.shape.radius = sprite_size.x * sprite.pixel_size / 2.0
-
-	collision_shape.position.y = 0.01 #-collision_shape.shape.height # -sprite_size.y * sprite.pixel_size # Vector pointing along the Y axis = 
-	play_animation("idle")
+	if collision_width_override == 0:
+		collision_shape.shape.radius = sprite_size.x * sprite.pixel_size / 2.0
+	else:
+		collision_shape.shape.radius = collision_width_override * sprite.pixel_size / 2.0
+	if collision_height_override == 0:
+		collision_shape.shape.height = sprite_size.y * sprite.pixel_size
+	else:
+		collision_shape.shape.height = collision_height_override * sprite.pixel_size
+	if collision_height_offsety != 0:
+		collision_shape.position.y = collision_height_offsety * sprite.pixel_size #-collision_shape.shape.height # -sprite_size.y * sprite.pixel_size # Vector pointing along the Y axis = 
+	
+	force_animation("idle")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 	
+func update_animation():
+	play_animation(sprite.animation)
+	
+func force_animation(name):	
+	animation_states[sprite.animation] = sprite.frame
+	animation_playing = name
+	sprite.play(name + animation_modifier)
+	if(sprite.animation in animation_states):
+		sprite.frame = animation_states[sprite.animation]
+
 func play_animation(name):
+	# dont update animation if we want to play the same again
+	if name + animation_modifier == sprite.animation:
+		return
 	# store previous animation position
 	animation_states[sprite.animation] = sprite.frame
 	# play new anim
 	if sprite.sprite_frames.has_animation(name):
-		sprite.play(name)
+		animation_playing = name
+		sprite.play(name + animation_modifier)
 		# set frame if already stored
-		if(name in animation_states):
-			sprite.frame = animation_states[name]
+		if(sprite.animation in animation_states):
+			sprite.frame = animation_states[sprite.animation]
 	
 
 func process_movement(delta):
@@ -109,17 +137,8 @@ func process_movement(delta):
 	if(move_direction.z > 1): move_direction.z = 1;
 	if(move_direction.z < -1): move_direction.z = -1;
 	
-	#if body.is_on_wall():
-		#move_direction.x = 0
-		#move_direction.z = 0
-	
 	var direction = move_direction
 		
-	#if move_direction != Vector3.ZERO:
-	#	direction = direction.normalized()
-	#	# Setting the basis property will affect the rotation of the node.
-	#	#$Pivot.basis = Basis.looking_at(direction)
-	
 	var old_target_velocity = Vector3(target_velocity)
 	target_velocity = move_direction
 	
@@ -152,10 +171,21 @@ func process_movement(delta):
 
 	
 
-	if(target_velocity == Vector3.ZERO and old_target_velocity != Vector3.ZERO):
+	#if(target_velocity == Vector3.ZERO and old_target_velocity != Vector3.ZERO):
+	if(target_velocity == Vector3.ZERO):
 		play_animation("idle")
-	if(target_velocity != Vector3.ZERO and old_target_velocity == Vector3.ZERO):
-		play_animation("move_side")
+	#if(target_velocity != Vector3.ZERO and old_target_velocity == Vector3.ZERO):
+		#play_animation("move_side")
+	else:
+		var target_velocity_noy = Vector3(target_velocity.x, 0, target_velocity.z)
+		var angle = (target_velocity_noy.signed_angle_to(Vector3(1,0,0),Vector3(0,1,0)) + PI) / 2
+	
+		var anim_dir = snapped(angle / PI * (8 - 0.25), 1) + 1
+		if anim_dir == 9 or anim_dir == 8 or anim_dir == 1 or anim_dir == 2: play_animation("move_side")
+		if anim_dir == 3: play_animation("move_up")
+		if anim_dir == 4 or anim_dir == 5 or anim_dir == 6: play_animation("move_side")
+		if anim_dir == 7: play_animation("move_down")
+		
 	if target_velocity.x >= 0:
 		sprite.flip_h = true
 	if target_velocity.x < 0:
@@ -166,17 +196,6 @@ func process_movement(delta):
 	var collision_occured = body.move_and_slide()
 	
 	# Interactive collision detection
-	'''
-	if parent.has_method("collision_callback"):
-		var collision_results = body.move_and_collide(target_velocity,true)
-		if collision_results:
-			for i in range(collision_results.get_collision_count() - 1):
-				var collider = collision_results.get_collider(i)
-				parent.collision_callback(collider)
-	'''
-	#if collision_occured:
-	#	for i in range(body.get_slide_collision_count() - 1):
-	#		var collider = body.get_slide_collision(i)
 	var collision_results = body.move_and_collide(target_velocity * delta * 2, true)
 	if collision_results:
 		var test = collision_results.get_collision_count()
@@ -193,18 +212,12 @@ func process_movement(delta):
 				# collided with something, run generic method
 				parent.collision_generic_callback(collider)
 						
-						
-	
-
-
 
 func _physics_process(delta):
 	if(!initialized):
 		return
 		
 	process_movement(delta)
-
-
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

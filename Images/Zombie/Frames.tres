@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://ca8ep5ww46ysg"]
+
+[ext_resource type="Texture2D" uid="uid://guqtocwl1jsb" path="res://Images/Zombie/frames/idle/zombie_idle1.png" id="1_03f3c"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_03f3c")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
