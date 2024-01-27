@@ -29,6 +29,9 @@ func _ready():
 	body.jump_speed = jump_speed
 	body.acceleration = acceleration
 	body.deceleration = deceleration
+	
+	body.collision_width_override = 16
+	
 	body.init()
 	
 func _physics_process(delta):

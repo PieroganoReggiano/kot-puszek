@@ -14,9 +14,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000655711, 0.00824597, -0.0
 script = ExtResource("1_gr72u")
 gravity_enabled = null
 gravity = 0.0
-collision_width_override = null
-collision_height_override = null
-collision_height_offsety = null
 
 [node name="node_center" type="Node3D" parent="Body"]
 
