@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2w6yntn5huok"]
+
+[ext_resource type="Shader" path="res://level-wip.gdshader" id="1_qmdan"]
+[ext_resource type="Texture2D" uid="uid://dl5i4vcah08h1" path="res://levele-wip/e1m1.png" id="2_3thyl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kp7w7"]
+render_priority = 0
+shader = ExtResource("1_qmdan")
+shader_parameter/map_size = Vector2(400, 400)
+shader_parameter/tile_map_size = Vector2(128, 128)
+shader_parameter/skip_tiles = true
+shader_parameter/map = ExtResource("2_3thyl")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4072h"]
+material = SubResource("ShaderMaterial_kp7w7")
+
+[node name="LevelRoot" type="Node3D"]
+
+[node name="Terrain" type="MeshInstance3D" parent="."]
+transform = Transform3D(512, 0, 0, 0, -2.23802e-05, 512, 0, -512, -2.23802e-05, 0, 0, 0)
+mesh = SubResource("QuadMesh_4072h")
