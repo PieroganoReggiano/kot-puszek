@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bff0r2nv5n3nv"]
+[gd_scene load_steps=13 format=3 uid="uid://bff0r2nv5n3nv"]
 
-[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_oc8dp"]
+[ext_resource type="PackedScene" uid="uid://b1w1apcywo4ow" path="res://default_camera.tscn" id="1_au3bk"]
 [ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="2_sg15i"]
 [ext_resource type="Script" path="res://Scripts/Objects/Player.gd" id="3_kmk7j"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="4_jd7q7"]
@@ -10,22 +10,15 @@
 [ext_resource type="SpriteFrames" uid="uid://vc0qvvrvsf6i" path="res://Images/Bum/Frames.tres" id="7_xl12k"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="8_2rudo"]
 [ext_resource type="SpriteFrames" uid="uid://d1qiao6y7snn2" path="res://Images/Can/Frames.tres" id="9_aitfx"]
+[ext_resource type="PackedScene" uid="uid://bqdogswsqsf8q" path="res://Blockade.tscn" id="11_g16fm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4hjd"]
 size = Vector3(512, 2, 512)
 
 [node name="Level" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00541, 0)
-current = true
-fov = 60.0
-near = 0.1
-far = 150.0
-script = ExtResource("1_oc8dp")
-speed = 50.0
+[node name="Camera3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_au3bk")]
 target = NodePath("../Player")
-offset = Vector3(0, 5.5, 6)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
@@ -38,7 +31,21 @@ gravity_enabled = true
 speed = 7.0
 acceleration = 6.0
 deceleration = 10.0
-jump_speed = 60.0
+jump_speed = 120.0
+gravity = 30.0
+
+[node name="Drunkard" parent="." instance=ExtResource("2_sg15i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169, 1, 109)
+script = ExtResource("6_65nb8")
+sprite_frames = ExtResource("7_xl12k")
+gravity_enabled = true
+
+[node name="Can" parent="." instance=ExtResource("2_sg15i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -158.307, 0.609457, 116.447)
+script = ExtResource("8_2rudo")
+sprite_frames = ExtResource("9_aitfx")
+gravity_enabled = null
+gravity = false
 
 [node name="Floor" type="StaticBody3D" parent="."]
 axis_lock_linear_x = true
@@ -153,18 +160,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169, 1, 50)
 size = Vector3(6, 10, 14)
 
 [node name="Budyn3" parent="Budyny" instance=ExtResource("6_ygdt8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -191, 1, 126)
-size = Vector3(31, 10, 11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -193, 1, 126)
+size = Vector3(33, 10, 11)
 
-[node name="Drunkard" parent="." instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169, 1, 109)
-script = ExtResource("6_65nb8")
-sprite_frames = ExtResource("7_xl12k")
-gravity_enabled = true
+[node name="Blokady" type="Node" parent="."]
 
-[node name="Can" parent="." instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -158.307, 0.609457, 116.447)
-script = ExtResource("8_2rudo")
-sprite_frames = ExtResource("9_aitfx")
-gravity_enabled = null
-gravity = false
+[node name="Blockade" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 2, 125)
+
+[node name="Blockade10" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159, 2, 131)
+
+[node name="Blockade11" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157, 2, 131)
+
+[node name="Blockade12" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -155, 2, 131)
+
+[node name="Blockade13" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153, 2, 131)
+
+[node name="Blockade14" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -151, 2, 131)
+
+[node name="Blockade3" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 2, 123)
+
+[node name="Blockade5" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 2, 121)
+
+[node name="Blockade7" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 2, 119)
+
+[node name="Blockade9" parent="Blokady" instance=ExtResource("11_g16fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 2, 117)

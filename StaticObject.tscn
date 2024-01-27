@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://beepfju4huhl2"]
+
+[ext_resource type="Script" path="res://Scripts/StaticObject.gd" id="1_wrbud"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qcpx3"]
+resource_local_to_scene = true
+height = 0.16
+radius = 0.08
+
+[node name="DynamicObject" type="Node3D"]
+
+[node name="Body" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000655711, 0.00824597, -0.00357354)
+script = ExtResource("1_wrbud")
+speed = 14.0
+jump_speed = 4.0
+acceleration = 3.0
+deceleration = 3.0
+fall_acceleration = 75
+
+[node name="node_center" type="Node3D" parent="Body"]
+
+[node name="sprite_center" type="Node3D" parent="Body"]
+
+[node name="Sprite" type="AnimatedSprite3D" parent="Body/sprite_center"]
+pixel_size = 0.0625
+billboard = 1
+texture_filter = 0
+
+[node name="Collision" type="CollisionShape3D" parent="Body"]
+shape = SubResource("CylinderShape3D_qcpx3")

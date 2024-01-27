@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqdogswsqsf8q"]
+
+[ext_resource type="PackedScene" uid="uid://beepfju4huhl2" path="res://StaticObject.tscn" id="1_206e7"]
+[ext_resource type="SpriteFrames" uid="uid://bbmhxcufbjyvt" path="res://Images/Blockade/blockade.tres" id="2_i637q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_im6i2"]
+size = Vector3(2, 20, 2)
+
+[node name="Blockade" instance=ExtResource("1_206e7")]
+
+[node name="Sprite" parent="Body/sprite_center" index="0"]
+sprite_frames = ExtResource("2_i637q")
+
+[node name="Collision" parent="Body" index="2"]
+shape = SubResource("BoxShape3D_im6i2")
