@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dkw4hey0njdd4"]
+[gd_scene load_steps=19 format=3 uid="uid://clt23cavswubg"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_wqg10"]
 [ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="2_58mns"]
@@ -9,8 +9,11 @@
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="6_gxtd0"]
 [ext_resource type="SpriteFrames" uid="uid://d1qiao6y7snn2" path="res://Images/Can/Frames.tres" id="7_bm1rs"]
 [ext_resource type="SpriteFrames" uid="uid://vc0qvvrvsf6i" path="res://Images/Bum/Frames.tres" id="7_f3o8n"]
+[ext_resource type="Script" path="res://Scripts/UI/koto_ui.gd" id="10_8f11n"]
 [ext_resource type="Script" path="res://Scripts/Objects/Zombie.gd" id="10_h2cjh"]
+[ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="10_mh80m"]
 [ext_resource type="SpriteFrames" uid="uid://ca8ep5ww46ysg" path="res://Images/Zombie/Frames.tres" id="11_nd2gi"]
+[ext_resource type="Texture2D" uid="uid://c3wuh8o08c4jg" path="res://meniusy/butonik2.png" id="14_rt6u4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v18d"]
 albedo_texture = ExtResource("5_w60u6")
@@ -112,3 +115,56 @@ script = ExtResource("10_h2cjh")
 sprite_frames = ExtResource("11_nd2gi")
 speed = 1.0
 target = NodePath("../Player")
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_mh80m")
+
+[node name="koto_ui" type="HBoxContainer" parent="ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_8f11n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/koto_ui"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ui/koto_ui"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="in_game_menu" type="CenterContainer" parent="ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/in_game_menu"]
+layout_mode = 2
+theme_override_constants/separation = 34
+
+[node name="TextureButton" type="TextureButton" parent="ui/in_game_menu/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("14_rt6u4")
+stretch_mode = 4
+
+[node name="TextureButton2" type="TextureButton" parent="ui/in_game_menu/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("14_rt6u4")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ui/in_game_menu"]
+layout_mode = 2
+text = "Sraken"
