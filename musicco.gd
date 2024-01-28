@@ -62,8 +62,18 @@ func get_remaining():
 	if not playing:
 		return 0.0
 	return stream.get_length() - get_playback_position()
-	
-	
+
+func get_next_pattern_time():
+	if not playing:
+		return 0.0
+	var phase = _get_current_phase()
+	if len(phase.streams) < 1:
+		return 0.0
+	var next_pattern_index = current_pattern_number + 1
+	if (next_pattern_index >= len(phase.streams)):
+		next_pattern_index = phase.loop_start
+	return phase.streams[next_pattern_index].get_length()
+
 func _get_current_phase():
 	var phase = chill
 	if current_phase == 1:
@@ -92,15 +102,15 @@ func _ready():
 	_cycle()
 			 
 func _process(delta):
-	if Input.is_physical_key_pressed(KEY_Q):
+	if Input.is_physical_key_pressed(KEY_Y):
 		order_chill()
-	if Input.is_physical_key_pressed(KEY_W):
+	if Input.is_physical_key_pressed(KEY_U):
 		order_beginning()
-	if Input.is_physical_key_pressed(KEY_E):
+	if Input.is_physical_key_pressed(KEY_I):
 		order_danger()
-	if Input.is_physical_key_pressed(KEY_R):
+	if Input.is_physical_key_pressed(KEY_O):
 		order_large_fight()
-	if Input.is_physical_key_pressed(KEY_T):
+	if Input.is_physical_key_pressed(KEY_P):
 		order_hard_style()
 	if Input.is_physical_key_pressed(KEY_SPACE):
 		force_order()

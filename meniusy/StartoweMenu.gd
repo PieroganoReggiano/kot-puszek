@@ -2,7 +2,7 @@ extends Control
 var plum_player: AudioStreamPlayer2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	plum_player = get_child(2)
+	plum_player = $AudioStreamPlayer2D
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,7 +14,11 @@ func plumkaj():
 
 func _on_start_pressed():
 	plumkaj()
-	get_tree().change_scene_to_file("res://level.tscn")
+	var korzen = get_node_or_null("../..")
+	if korzen == null:
+		get_tree().change_scene_to_file("res://level.tscn")
+	else:
+		korzen.begin_game()
 	
 
 

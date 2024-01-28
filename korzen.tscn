@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnpk1ulc0ip7w"]
+
+[ext_resource type="PackedScene" uid="uid://bff0r2nv5n3nv" path="res://e1m1.tscn" id="1_8un4n"]
+[ext_resource type="Script" path="res://korzen.gd" id="1_rwxlp"]
+[ext_resource type="PackedScene" uid="uid://b8cc880q1xue6" path="res://meniusy/startowe_menu.tscn" id="2_bedn2"]
+[ext_resource type="PackedScene" uid="uid://diesdf2sh8w5d" path="res://musicco.tscn" id="3_qcnxe"]
+
+[node name="Korzen" type="Node"]
+script = ExtResource("1_rwxlp")
+
+[node name="Musicco" parent="." instance=ExtResource("3_qcnxe")]
+
+[node name="LevelContainer" type="Node" parent="."]
+
+[node name="Level" parent="LevelContainer" instance=ExtResource("1_8un4n")]
+
+[node name="MenuContainer" type="Node" parent="."]
+
+[node name="StartoweMenu" parent="MenuContainer" instance=ExtResource("2_bedn2")]

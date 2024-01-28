@@ -1,15 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bff0r2nv5n3nv"]
+[gd_scene load_steps=11 format=3 uid="uid://bff0r2nv5n3nv"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_03oag"]
 [ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="2_sg15i"]
 [ext_resource type="Script" path="res://Scripts/Objects/Player.gd" id="3_kmk7j"]
-[ext_resource type="SpriteFrames" uid="uid://dqrhrkx13uw1o" path="res://Images/Player/Frames.tres" id="4_jd7q7"]
 [ext_resource type="PackedScene" uid="uid://c2w6yntn5huok" path="res://terrain.tscn" id="5_svdbj"]
 [ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_65nb8"]
 [ext_resource type="PackedScene" uid="uid://lotnu512ab0q" path="res://budyn.tscn" id="6_ygdt8"]
-[ext_resource type="SpriteFrames" uid="uid://vc0qvvrvsf6i" path="res://Images/Bum/Frames.tres" id="7_xl12k"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="8_2rudo"]
-[ext_resource type="SpriteFrames" uid="uid://d1qiao6y7snn2" path="res://Images/Can/Frames.tres" id="9_aitfx"]
 [ext_resource type="PackedScene" uid="uid://bqdogswsqsf8q" path="res://Blockade.tscn" id="11_g16fm"]
 [ext_resource type="PackedScene" uid="uid://n6qwde4pj4k0" path="res://smietnik.tscn" id="12_ni4wl"]
 
@@ -19,10 +16,11 @@ size = Vector3(512, 2, 512)
 [node name="Level" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -165, 3, 114)
+fov = 50.0
 script = ExtResource("1_03oag")
-speed = 60.0
 target = NodePath("../Player")
-offset = Vector3(0, 6, 5)
+offset = Vector3(0, 6.5, 5.5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
@@ -30,7 +28,6 @@ transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 
 [node name="Player" parent="." instance=ExtResource("2_sg15i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164, 1.1, 112)
 script = ExtResource("3_kmk7j")
-sprite_frames = ExtResource("4_jd7q7")
 gravity_enabled = true
 speed = 7.0
 acceleration = 6.0
@@ -39,15 +36,13 @@ jump_speed = 120.0
 gravity = 30.0
 
 [node name="Drunkard" parent="." instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169, 1, 109)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.732, 1.01575, 107.322)
 script = ExtResource("6_65nb8")
-sprite_frames = ExtResource("7_xl12k")
 gravity_enabled = true
 
 [node name="Can" parent="." instance=ExtResource("2_sg15i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -158.307, 0.609457, 116.447)
 script = ExtResource("8_2rudo")
-sprite_frames = ExtResource("9_aitfx")
 gravity_enabled = null
 gravity = false
 

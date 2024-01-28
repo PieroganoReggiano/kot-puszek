@@ -15,6 +15,7 @@ extends Node3D
 var attack_cooldown:float = 1
 
 # ---- player states ----
+var rooted : bool = false
 var points:int = 0
 var has_can:bool = false
 var move_attack:bool = false
@@ -67,12 +68,12 @@ func _on_sprite_animation_finished():
 		
 
 func process_player_input():
-	body.move_left = Input.is_action_pressed("move_left")
-	body.move_right = Input.is_action_pressed("move_right")
-	body.move_up = Input.is_action_pressed("move_up")
-	body.move_down = Input.is_action_pressed("move_down")
-	body.move_jump = Input.is_action_pressed("move_jump")
-	move_attack = Input.is_action_pressed("move_attack")
+	body.move_left = Input.is_action_pressed("move_left") if not rooted else false
+	body.move_right = Input.is_action_pressed("move_right") if not rooted else false
+	body.move_up = Input.is_action_pressed("move_up") if not rooted else false
+	body.move_down = Input.is_action_pressed("move_down") if not rooted else false
+	body.move_jump = Input.is_action_pressed("move_jump") if not rooted else false
+	move_attack = Input.is_action_pressed("move_attack") if not rooted else false
 	
 func collision_generic_callback(collider):
 	pass
