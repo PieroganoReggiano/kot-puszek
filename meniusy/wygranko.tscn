@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://nvmd0yiokmbr"]
+
+[ext_resource type="Script" path="res://meniusy/wygranko.gd" id="1_3qp07"]
+[ext_resource type="FontFile" uid="uid://chacug4g3swd3" path="res://foncik/PixelifySans-SemiBold.ttf" id="1_qbaeg"]
+[ext_resource type="Texture2D" uid="uid://dnyu0f66dexkx" path="res://Images/Bum/frames/bum_laugh/bum_laugh1.png" id="2_jkny8"]
+[ext_resource type="Texture2D" uid="uid://c3wuh8o08c4jg" path="res://meniusy/butonik2.png" id="2_wj3kc"]
+[ext_resource type="Texture2D" uid="uid://bvpy80pqxem3n" path="res://meniusy/butonik-najech2.png" id="3_aw770"]
+[ext_resource type="Texture2D" uid="uid://0ffi3r66vhui" path="res://Images/Bum/frames/bum_laugh/bum_laugh2.png" id="3_xsa40"]
+[ext_resource type="FontFile" uid="uid://dbaodg3evongo" path="res://foncik/PixelifySans-Medium.ttf" id="4_dutqs"]
+[ext_resource type="AudioStream" uid="uid://bt5551oqb4q7u" path="res://musicco-patternen/wygranko.wav" id="4_yaj7u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_on11e"]
+font = ExtResource("4_dutqs")
+font_size = 34
+
+[node name="Wygranko" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3qp07")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yaj7u")
+attenuation = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0.454902, 0.0588235, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1158.0
+offset_top = -1267.0
+offset_right = 1159.0
+offset_bottom = 2002.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("2_jkny8")
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1119.0
+offset_top = -1127.0
+offset_right = 1198.0
+offset_bottom = 2142.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("3_xsa40")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -442.0
+offset_top = -102.0
+offset_right = 452.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_qbaeg")
+theme_override_font_sizes/font_size = 72
+text = "Niesamowite zwycięstwo"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -1.5708
+theme_override_constants/margin_left = -160
+
+[node name="wracanie" type="TextureButton" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(286, 150)
+layout_mode = 2
+size_flags_vertical = 3
+action_mode = 0
+texture_normal = ExtResource("2_wj3kc")
+texture_pressed = ExtResource("3_aw770")
+texture_hover = ExtResource("3_aw770")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/wracanie"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wracanie"
+label_settings = SubResource("LabelSettings_on11e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(564, 349)
+scale = Vector2(80, 80)

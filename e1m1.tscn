@@ -7,9 +7,9 @@
 [ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_65nb8"]
 [ext_resource type="PackedScene" uid="uid://lotnu512ab0q" path="res://budyn.tscn" id="6_ygdt8"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="8_2rudo"]
-[ext_resource type="PackedScene" uid="uid://b4a0flm6lefbh" path="res://ui.tscn" id="10_x6f4r"]
+[ext_resource type="PackedScene" path="res://ui.tscn" id="10_x6f4r"]
 [ext_resource type="PackedScene" uid="uid://bqdogswsqsf8q" path="res://Blockade.tscn" id="11_g16fm"]
-[ext_resource type="PackedScene" path="res://smietnik.tscn" id="12_ni4wl"]
+[ext_resource type="PackedScene" uid="uid://n6qwde4pj4k0" path="res://smietnik.tscn" id="12_ni4wl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4hjd"]
 size = Vector3(512, 2, 512)
