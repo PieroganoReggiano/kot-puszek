@@ -3,10 +3,6 @@ extends Node3D
 
 # ---- arguments ----
 @export var sprite_frames:SpriteFrames
-@export var is_player:bool = false
-@export var gravity_enabled = false
-@export var gravity:float = 0.2
-@export var dont_block:bool = false
 
 
 @export var collision_width_override:float = 0
@@ -34,13 +30,14 @@ var sprite_size
 
 
 var initialized:bool = false
+var oneshot:bool = false
 
 func init():
 	if(sprite_frames != null):
 		initialized = true
 	else:
 		return
-		
+	sprite = body.get_node("sprite_center/Sprite")
 	animation_states = {}
 	sprite.sprite_frames = sprite_frames
 	sprite_size = sprite.sprite_frames.get_frame_texture("idle", 0).get_size()
@@ -55,11 +52,8 @@ func init():
 	if collision_height_offsety != 0:
 		collision_shape.position.y = collision_height_offsety * sprite.pixel_size #-collision_shape.shape.height # -sprite_size.y * sprite.pixel_size # Vector pointing along the Y axis = 
 	
-	if(dont_block):
-		body.collision_layer = 1 << 1
-		body.collision_mask = 1 << 1
-	
 	force_animation("idle")
+	#process_mode = Node.PROCESS_MODE_DISABLED
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -96,12 +90,16 @@ func play_animation(name):
 func _physics_process(delta):
 	if(!initialized):
 		return
+
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(!initialized):
 		return
+	if(not oneshot):
+		init()
+		oneshot = true
 		
 	# Ostatecznie poszla alternatywna opcja: billboard
 	#if not Engine.is_editor_hint():

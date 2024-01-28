@@ -1,0 +1,16 @@
+[gd_resource type="PlaneMesh" load_steps=3 format=3 uid="uid://dp0a73pqxgdrq"]
+
+[ext_resource type="Texture2D" uid="uid://sgbvkvfds44w" path="res://Images/Decorations/manhole.png" id="1_ryin4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7g8n"]
+transparency = 1
+albedo_texture = ExtResource("1_ryin4")
+emission_enabled = true
+emission_energy_multiplier = 0.51
+detail_mask = ExtResource("1_ryin4")
+texture_filter = 0
+texture_repeat = false
+
+[resource]
+material = SubResource("StandardMaterial3D_i7g8n")
+size = Vector2(1, 1)

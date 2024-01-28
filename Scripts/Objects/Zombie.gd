@@ -119,6 +119,6 @@ func collision_generic_callback(collider):
 	pass
 	
 func collision_DynamicObject_callback(object):
-	if(object.name in ["Drunkard", "Puszek"]):
+	if(object.name in ["Drunkard", "Puszek", "Player"]):
 		body.attack()
 	#if object.name

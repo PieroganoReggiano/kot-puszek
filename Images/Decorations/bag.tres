@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://ccqk8snvsa36k"]
+
+[ext_resource type="Texture2D" uid="uid://d3am37uo5yql1" path="res://Images/Decorations/bag.png" id="1_1wio6"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1wio6")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

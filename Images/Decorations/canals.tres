@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://bjdg3vm0wx5r2"]
+
+[ext_resource type="Texture2D" uid="uid://7uyv757ni87t" path="res://Images/Decorations/canals.png" id="1_8vete"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8vete")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

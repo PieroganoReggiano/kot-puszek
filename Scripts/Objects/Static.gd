@@ -4,6 +4,7 @@ extends Node3D
 @export var sprite_frames:SpriteFrames
 @export var gravity_enabled = false
 @export var gravity = 75
+@export var dont_block:bool = false
 
 @onready var body = get_node("Body")
 
@@ -12,8 +13,5 @@ func _ready():
 	body.sprite_frames = sprite_frames
 	body.gravity_enabled = gravity_enabled
 	body.gravity = gravity
-	body.speed = 0
-	body.jump_speed = 0
-	body.acceleration = 0
-	body.deceleration = 0
+	body.dont_block = dont_block
 	body.init()

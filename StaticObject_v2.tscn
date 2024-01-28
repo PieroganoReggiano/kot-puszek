@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://beepfju4huhl2"]
+[gd_scene load_steps=3 format=3 uid="uid://bcxpijvcyita1"]
 
-[ext_resource type="Script" path="res://Scripts/StaticObject.gd" id="1_wrbud"]
+[ext_resource type="Script" path="res://Scripts/StaticObject.gd" id="1_bwa2x"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_qcpx3"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_atjgt"]
 resource_local_to_scene = true
-height = 0.16
-radius = 0.08
+height = 3.0
 
-[node name="DynamicObject" type="Node3D"]
+[node name="StaticObject" type="Node3D"]
 
-[node name="Body" type="StaticBody3D" parent="."]
+[node name="Body" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000655711, 0.00824597, -0.00357354)
-script = ExtResource("1_wrbud")
+disable_mode = 1
+script = ExtResource("1_bwa2x")
 dont_block = null
 
 [node name="node_center" type="Node3D" parent="Body"]
@@ -24,4 +24,4 @@ billboard = 1
 texture_filter = 0
 
 [node name="Collision" type="CollisionShape3D" parent="Body"]
-shape = SubResource("CylinderShape3D_qcpx3")
+shape = SubResource("CylinderShape3D_atjgt")

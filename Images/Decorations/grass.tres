@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://dsbr5vpcrqc0b"]
+
+[ext_resource type="Texture2D" uid="uid://d1o1txg1vs2jw" path="res://Images/Decorations/grass.png" id="1_bon1e"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bon1e")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

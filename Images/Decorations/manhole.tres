@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://bkq18rjspmstq"]
+
+[ext_resource type="Texture2D" uid="uid://sgbvkvfds44w" path="res://Images/Decorations/manhole.png" id="1_w2jwc"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w2jwc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.2
+}]
