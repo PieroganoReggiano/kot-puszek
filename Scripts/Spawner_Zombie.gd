@@ -54,6 +54,8 @@ func spawn_object():
 	var pos_y = rng.randf_range(min_y, max_y)
 	var pos_z = rng.randf_range(min_z, max_z)
 	
+	scene_root.add_child(obj)
+	
 	obj.global_position = Vector3(pos_x, pos_y, pos_z)
 	
-	scene_root.add_child(obj)
+

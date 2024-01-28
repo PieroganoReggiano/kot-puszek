@@ -30,7 +30,6 @@ func spawn_object():
 		
 	var obj = object_to_load.instantiate()
 	obj.set_script(script_to_load)
-	obj.name = "Can_a_" + str(spawn_counter)
 	
 	var min_x = self.global_position.x - self.global_transform.basis.x.length()
 	var max_x = self.global_position.x + self.global_transform.basis.x.length()
@@ -43,6 +42,7 @@ func spawn_object():
 	var pos_y = rng.randf_range(min_y, max_y)
 	var pos_z = rng.randf_range(min_z, max_z)
 	
-	obj.global_position = Vector3(pos_x, pos_y, pos_z)
-	
 	scene_root.add_child(obj)
+	
+	obj.global_position = Vector3(pos_x, pos_y, pos_z)
+	obj.name = "Can_a_" + str(spawn_counter)

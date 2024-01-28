@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1as6p3f2yha0" path="res://Images/Floor/wall2_mid.png" id="5_w60u6"]
 [ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_6xb56"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="6_gxtd0"]
-[ext_resource type="PackedScene" uid="uid://b4a0flm6lefbh" path="res://ui.tscn" id="9_s423p"]
+[ext_resource type="PackedScene" path="res://ui.tscn" id="9_s423p"]
 [ext_resource type="Script" path="res://Scripts/Objects/Pan.gd" id="9_t8n4y"]
 [ext_resource type="PackedScene" uid="uid://bci4ceemy3ams" path="res://Objects/Spawner.tscn" id="10_a8ynw"]
 [ext_resource type="Script" path="res://Scripts/Objects/Zombie.gd" id="10_h2cjh"]
