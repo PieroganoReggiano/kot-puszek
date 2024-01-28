@@ -13,7 +13,8 @@ func _process(delta):
 
 extends Camera3D
 
-@export var speed = 3.0
+@export var speed = 5.0
+@export var rotation_speed = 3.0
 @export var target: Node3D
 @export var offset = Vector3.ZERO
 
@@ -25,13 +26,14 @@ func _physics_process(delta):
 	if !subtarget:
 		return
 		
+	var prev_rotation = rotation
+	
 	var target_xform = subtarget.global_transform.translated_local(offset)
 	global_transform = global_transform.interpolate_with(target_xform, speed * delta)
 
+
 	look_at(subtarget.global_transform.origin, subtarget.transform.basis.y)
 	
-func _process(delta):
-	pass
-	#var camera_pos = get_viewport().get_camera().global_transform.origin
-	#camera_pos.y = 0
-	#look_at(camera_pos, Vector3(0, 1, 0))
+	rotation = lerp(rotation, prev_rotation, pow(0.5, rotation_speed))
+	
+
