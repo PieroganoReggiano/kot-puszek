@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/DynamicObject.gd" id="1_gr72u"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_atjgt"]
-height = 0.48
-radius = 0.08
+resource_local_to_scene = true
+height = 3.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_k1dla"]
 resource_local_to_scene = true
@@ -19,6 +19,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000655711, 0.00824597, -0.0
 script = ExtResource("1_gr72u")
 gravity_enabled = true
 gravity = 20.0
+max_health = null
+stunnable = null
+attack_strength = null
+attack_class = null
+jump_speed = 4.0
+ignore_blocking_collision = null
 
 [node name="node_center" type="Node3D" parent="Body"]
 

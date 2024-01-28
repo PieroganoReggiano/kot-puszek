@@ -1,16 +1,18 @@
 @tool
 extends Node3D
 
-@export var gravity_enabled = false
-@export var speed:float = 0.4
-@export var acceleration:float = 2
-@export var deceleration:float = 4
-@export var jump_speed:float = 35
-@export var gravity:float = 10
+var gravity_enabled = true
+var speed:float = 4
+var acceleration:float = 2
+var deceleration:float = 4
+var jump_speed:float = 35
+var gravity:float = 10
 @export var navigation_path:PackedVector3Array
+@export var max_health:float
 
 @onready var body = get_node("Body")
 
+var points:float = 0
 
 var anim_timer:Timer = Timer.new()
 var navigation_agent: NavigationAgent3D = NavigationAgent3D.new()
@@ -23,10 +25,10 @@ var alcohol_level:float = 0
 
 # ---- non user-modifiable parameters
 var alcohol_per_beer:float = 20
-
-var movement_target_position: Vector3 = Vector3(-3.0,0.0,1.0)
+var drinking_beer_now:bool = false
 
 func anim_drink():
+	drinking_beer_now = true
 	anim_timer.timeout.disconnect(anim_idle)
 	anim_timer.timeout.disconnect(anim_laugh)
 	body.play_animation("drink")
@@ -42,6 +44,7 @@ func anim_laugh():
 	anim_timer.set_wait_time(2)
 	anim_timer.start()
 func anim_idle():
+	drinking_beer_now = false
 	anim_timer.timeout.disconnect(anim_idle)
 	body.play_animation("idle")
 	
@@ -51,6 +54,11 @@ func drink_beer():
 	beers_drank += 1
 	anim_drink()
 	
+func death(attacker):
+	body.force_stun = true
+	body.max_health = 0
+	body.play_animation("death")
+	navigation_ready = false
 	
 func navigation_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -91,13 +99,13 @@ func process_movement(delta):
 		var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 		
 		#next_path_position = get_parent().get_node("Player/Body").global_transform.origin
-		print("navpath: " + str(navigation_agent.get_current_navigation_path()))
-		print("navpathidx: " + str(navigation_agent.get_current_navigation_path_index()))
-		print("C: " + str(current_agent_position))
-		print("N: " + str(next_path_position))
-		print("DIST: " + str(navigation_agent.distance_to_target()))
-		print("ISREACH: " + str(navigation_agent.is_target_reachable()))
-		print("REACHED: " + str(navigation_agent.is_target_reached()))
+		#print("navpath: " + str(navigation_agent.get_current_navigation_path()))
+		#print("navpathidx: " + str(navigation_agent.get_current_navigation_path_index()))
+		#print("C: " + str(current_agent_position))
+		#print("N: " + str(next_path_position))
+		#print("DIST: " + str(navigation_agent.distance_to_target()))
+		#print("ISREACH: " + str(navigation_agent.is_target_reachable()))
+		#print("REACHED: " + str(navigation_agent.is_target_reached()))
 		
 		#body.velocity = current_agent_position.direction_to(next_path_position) * speed
 		
@@ -107,12 +115,39 @@ func process_movement(delta):
 		
 		body.velocity = diff.normalized() * speed
 		
-		body.move_and_slide()
+		var target_velocity = body.velocity
+		if not drinking_beer_now:
+			body.move_and_slide()
+		
+		body.animation_use_move = false
+		
+		if(not drinking_beer_now):
+			if(target_velocity == Vector3.ZERO):
+				# only reset animation to idle if we were playing generic moving animation
+				body.play_animation("idle")
+			else:
+				var target_velocity_noy = Vector3(target_velocity.x, 0, target_velocity.z)
+				var angle = (target_velocity_noy.signed_angle_to(Vector3(1,0,0),Vector3(0,1,0)) + PI) / 2
+			
+				var anim_dir = snapped(angle / PI * (8 - 0.25), 1) + 1
+				if anim_dir == 9: anim_dir = 1
+				
+				if anim_dir == 8 or anim_dir == 1 or anim_dir == 2: body.play_animation("move_side")
+				if anim_dir == 3: body.play_animation("move_up")
+				if anim_dir == 4 or anim_dir == 5 or anim_dir == 6: body.play_animation("move_side")
+				if anim_dir == 7: body.play_animation("move_down")
+			
+		if target_velocity.x > 0:
+			body.sprite.flip_h = true
+		if target_velocity.x < 0:
+			body.sprite.flip_h = false
 
 func _physics_process(delta):
 	process_movement(delta)
 	
 func _process(delta):
+	if(body.health > 0):
+		points += (50 - abs(50 - alcohol_level)) * delta * 10
 	alcohol_level -= delta
 	if(alcohol_level < 0): alcohol_level = 0
 
@@ -128,13 +163,18 @@ func _ready():
 	body.acceleration = acceleration
 	body.deceleration = deceleration
 	
+	body.attack_class = 1
+	body.max_health = max_health
+	body.stunnable = true
+	
 	body.collision_width_override = 16
+	body.collision_height_offsety = 5
 	body.init()
 	
 	if navigation_path != null and navigation_path.size() > 0:
 		body.add_child(navigation_agent)
-		navigation_agent.path_desired_distance = 0.5
-		navigation_agent.target_desired_distance = 0.5
+		navigation_agent.path_desired_distance = 1.5
+		navigation_agent.target_desired_distance = 1.5
 
 		# Make sure to not await during _ready.
 		call_deferred("navigation_setup")

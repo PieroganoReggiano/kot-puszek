@@ -1,22 +1,29 @@
 @tool
 extends Node3D
 
-@export var speed:float = 0.4
-@export var acceleration:float = 2
-@export var deceleration:float = 4
-@export var jump_speed:float = 35
-@export var gravity:float = 10
+var speed:float = 0.4
+var acceleration:float = 2
+var deceleration:float = 4
+var jump_speed:float = 140
+var gravity:float = 30
+
 @export var target:Node3D
+@export var difficulty:float = 1.0
+@export var attack_player:bool = true
+@export var attack_drunkard:bool = true
+@export var max_health:float = 2
 
 @onready var body = self.get_node("Body")
 
 var logic_timer:Timer = Timer.new()
+var death_anim_timer:Timer = Timer.new()
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not Engine.is_editor_hint():
 		add_child(logic_timer)
+		add_child(death_anim_timer)
 		logic_timer.timeout.connect(process_state_machine)
 		logic_timer.set_wait_time(2)
 		logic_timer.start()
@@ -24,12 +31,19 @@ func _ready():
 	body.sprite_frames = load("res://Images/Zombie/Frames.tres")
 	body.gravity_enabled = true
 	body.gravity = gravity
-	body.speed = speed
+	body.speed = speed * difficulty
 	body.jump_speed = jump_speed
-	body.acceleration = acceleration
-	body.deceleration = deceleration
+	body.acceleration = acceleration * difficulty
+	body.deceleration = deceleration * difficulty
+	
+	body.attack_class = 2
+	body.max_health = max_health
+	body.stunnable = true
 	
 	body.collision_width_override = 16
+	body.collision_height_override = 10
+	body.collision_height_offsety = -10
+	
 	
 	body.init()
 	
@@ -65,11 +79,22 @@ func _process(delta):
 	if not Engine.is_editor_hint():
 		pass
 
-func take_attack(attacker):
+func take_damage(attacker, damage):
 	if attacker.points != null:
 		attacker.points += 50
-	queue_free()
 
+func death(attacker):
+	body.force_stun = true
+	death_anim_timer.timeout.connect(death_final)
+	death_anim_timer.one_shot = true
+	death_anim_timer.set_wait_time(0.75)
+	death_anim_timer.start()
+	body.play_animation("death")
+
+func death_final():
+	queue_free()
+	
+	
 func process_state_machine():
 	# if no target, move randomly
 	if target == null:
@@ -94,4 +119,6 @@ func collision_generic_callback(collider):
 	pass
 	
 func collision_DynamicObject_callback(object):
-	pass
+	if(object.name in ["Drunkard", "Puszek"]):
+		body.attack()
+	#if object.name
