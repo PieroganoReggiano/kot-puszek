@@ -16,6 +16,7 @@ func _on_zombie_medium_spawner_trigger_2_body_entered(body):
 		if parent.name == "Drunkard":
 			get_node("Spawners/Zombie_Medium_Drunkard").enable()
 			get_node("Spawners/Zombie_Medium_Puszek").enable()
+			get_node("../..").get_node("Musicco").order_large_fight()
 
 
 func _on_zombie_hard_spawner_trigger_body_entered(body):
@@ -24,6 +25,7 @@ func _on_zombie_hard_spawner_trigger_body_entered(body):
 		if parent.name == "Drunkard":
 			get_node("Spawners/Zombie_Hard_Drunkard").enable()
 			get_node("Spawners/Zombie_Hard_Puszek").enable()
+			get_node("../..").get_node("Musicco").order_hard_style()
 
 
 func make_win():
