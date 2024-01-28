@@ -1,12 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4a0flm6lefbh"]
+[gd_scene load_steps=15 format=3 uid="uid://b4a0flm6lefbh"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_wspju"]
 [ext_resource type="Script" path="res://Scripts/UI/koto_ui.gd" id="2_vp6va"]
 [ext_resource type="Texture2D" uid="uid://laike43xpm0k" path="res://Images/UI/healthbar10.png" id="3_37pu3"]
 [ext_resource type="Texture2D" uid="uid://b8cw2kgoyual1" path="res://Images/UI/frames/healthbar11.png" id="4_6hfjl"]
 [ext_resource type="Texture2D" uid="uid://c3wuh8o08c4jg" path="res://meniusy/butonik2.png" id="5_7i47y"]
+[ext_resource type="Texture2D" uid="uid://ddr7k17a0esl0" path="res://Images/Player/Frames/cat_idle/cat_idle1.png" id="5_dyxsn"]
+[ext_resource type="Texture2D" uid="uid://dyifi2jw1dq18" path="res://Images/Bum/frames/bum_idle/bum1.png" id="6_eh6x0"]
 [ext_resource type="Texture2D" uid="uid://bvpy80pqxem3n" path="res://meniusy/butonik-najech2.png" id="6_jfr3s"]
+[ext_resource type="Texture2D" uid="uid://drvakg6mont4n" path="res://Images/UI/heart.png" id="7_mblam"]
 [ext_resource type="FontFile" uid="uid://dbaodg3evongo" path="res://foncik/PixelifySans-Medium.ttf" id="7_tjdba"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0cgn"]
+atlas = ExtResource("4_6hfjl")
+region = Rect2(0, 32, 32, 128)
+margin = Rect2(0, 32, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s5j38"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_3gd42"]
+font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_trccm"]
 font = ExtResource("7_tjdba")
@@ -35,30 +49,183 @@ script = ExtResource("2_vp6va")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="koto_ui/Control"]
+[node name="MarginContainer2" type="MarginContainer" parent="koto_ui/Control"]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -128.0
-offset_right = 32.0
+offset_left = 38.0
+offset_top = -448.0
+offset_right = 103.0
 grow_vertical = 0
 scale = Vector2(3, 3)
+pivot_offset = Vector2(0.335, 0)
 theme_override_constants/margin_left = 19
 theme_override_constants/margin_bottom = 320
 
-[node name="Empty" type="TextureRect" parent="koto_ui/Control/MarginContainer"]
-visible = false
+[node name="Empty" type="TextureRect" parent="koto_ui/Control/MarginContainer2"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_37pu3")
 stretch_mode = 4
 
-[node name="Animatione" type="TextureRect" parent="koto_ui/Control/MarginContainer"]
+[node name="Drunkness" type="TextureRect" parent="koto_ui/Control/MarginContainer2"]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("4_6hfjl")
+texture = SubResource("AtlasTexture_k0cgn")
 stretch_mode = 4
+
+[node name="Scoreboard" type="GridContainer" parent="koto_ui/Control"]
+layout_mode = 1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 361.0
+offset_bottom = 180.0
+columns = 2
+
+[node name="CatIcon" type="TextureRect" parent="koto_ui/Control/Scoreboard"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("5_dyxsn")
+stretch_mode = 4
+
+[node name="DrunkardIcon" type="TextureRect" parent="koto_ui/Control/Scoreboard"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("6_eh6x0")
+stretch_mode = 4
+
+[node name="CatScore" type="Label" parent="koto_ui/Control/Scoreboard"]
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.75
+text = "TEST"
+label_settings = SubResource("LabelSettings_s5j38")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DrunkardScore" type="Label" parent="koto_ui/Control/Scoreboard"]
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.75
+text = "TEST"
+label_settings = SubResource("LabelSettings_3gd42")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hearts" type="GridContainer" parent="koto_ui/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -63.0
+offset_right = 428.0
+grow_vertical = 0
+columns = 10
+
+[node name="1" type="TextureRect" parent="koto_ui/Control/Hearts"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("7_mblam")
+stretch_mode = 4
+
+[node name="2" type="TextureRect" parent="koto_ui/Control/Hearts"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("7_mblam")
+stretch_mode = 4
+
+[node name="3" type="TextureRect" parent="koto_ui/Control/Hearts"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("7_mblam")
+stretch_mode = 4
+
+[node name="4" type="TextureRect" parent="koto_ui/Control/Hearts"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("7_mblam")
+stretch_mode = 4
+
+[node name="5" type="TextureRect" parent="koto_ui/Control/Hearts"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("7_mblam")
+stretch_mode = 4
+
+[node name="6" type="TextureRect" parent="koto_ui/Control/Hearts"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("7_mblam")
+stretch_mode = 4
+
+[node name="7" type="TextureRect" parent="koto_ui/Control/Hearts"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("7_mblam")
+stretch_mode = 4
+
+[node name="8" type="TextureRect" parent="koto_ui/Control/Hearts"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("7_mblam")
+stretch_mode = 4
+
+[node name="ScoreMeter" type="MarginContainer" parent="koto_ui/Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 83.0
+offset_bottom = 353.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(0.335, 0)
+theme_override_constants/margin_left = 19
+theme_override_constants/margin_bottom = 320
 
 [node name="VBoxContainer" type="VBoxContainer" parent="koto_ui"]
 visible = false
@@ -147,7 +314,7 @@ layout_mode = 2
 text = "Sraken"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.35
+wait_time = 0.1
 autostart = true
 
 [connection signal="pressed" from="PauzaMeniu/CenterContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]

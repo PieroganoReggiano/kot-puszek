@@ -83,7 +83,7 @@ func collision_DynamicObject_callback(object):
 			body.update_animation()
 			object.queue_free()
 
-	if(object.name == "Drunkard"):
+	if(object.name == "Drunkard" and not object.dead):
 		if has_can:
 			has_can = false
 			points += 75

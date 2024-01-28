@@ -25,6 +25,7 @@ var navigation_use_path:bool = true
 var beers_drank:int = 0
 
 var alcohol_level:float = 0
+var dead:bool = false
 
 # ---- non user-modifiable parameters
 var alcohol_per_beer:float = 20
@@ -69,6 +70,11 @@ func death(attacker):
 	body.max_health = 0
 	body.play_animation("death")
 	navigation_ready = false
+	dead = true
+	if(has_node("../../..")):
+		var rootnode = get_node("../../..")
+		if rootnode.has_method("przegranko"):
+			rootnode.przegranko()
 	
 func navigation_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -139,7 +145,8 @@ func process_movement(delta):
 		if(not drinking_beer_now):
 			if(target_velocity == Vector3.ZERO):
 				# only reset animation to idle if we were playing generic moving animation
-				body.play_animation("idle")
+				if not dead:
+					body.play_animation("idle")
 			else:
 				var target_velocity_noy = Vector3(target_velocity.x, 0, target_velocity.z)
 				var angle = (target_velocity_noy.signed_angle_to(Vector3(1,0,0),Vector3(0,1,0)) + PI) / 2
@@ -162,7 +169,7 @@ func _physics_process(delta):
 	
 func _process(delta):
 	if(body.health > 0):
-		points += (50 - abs(50 - alcohol_level)) * delta * 10
+		points += (50 - abs(50 - alcohol_level)) * delta * 1
 	alcohol_level -= delta
 	if(alcohol_level < 0): alcohol_level = 0
 
@@ -202,7 +209,7 @@ func _ready():
 func collision_DynamicObject_callback(object):
 	# detect can
 	#print(object.name)
-	if(object.name.begins_with("Can")):
+	if(object.name.begins_with("Can") and not dead):
 		drink_beer()
 		object.queue_free()
 

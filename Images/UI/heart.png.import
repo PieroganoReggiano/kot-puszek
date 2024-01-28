@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7uyv757ni87t"
-path="res://.godot/imported/canals.png-57ffebeff01e9c7cbe953a90d0f390e4.ctex"
+uid="uid://drvakg6mont4n"
+path="res://.godot/imported/heart.png-6d93ec2f2b617a528e3e579b882d5e29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Decorations/canals.png"
-dest_files=["res://.godot/imported/canals.png-57ffebeff01e9c7cbe953a90d0f390e4.ctex"]
+source_file="res://Images/UI/heart.png"
+dest_files=["res://.godot/imported/heart.png-6d93ec2f2b617a528e3e579b882d5e29.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

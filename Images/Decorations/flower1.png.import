@@ -3,26 +3,25 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctwg1e3hyoyoo"
-path.s3tc="res://.godot/imported/flower1.png-50901822c204cc69d036b2b1bf3b0813.s3tc.ctex"
+path="res://.godot/imported/flower1.png-50901822c204cc69d036b2b1bf3b0813.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Images/Decorations/flower1.png"
-dest_files=["res://.godot/imported/flower1.png-50901822c204cc69d036b2b1bf3b0813.s3tc.ctex"]
+dest_files=["res://.godot/imported/flower1.png-50901822c204cc69d036b2b1bf3b0813.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

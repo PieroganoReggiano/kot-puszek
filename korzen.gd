@@ -8,6 +8,8 @@ var camera_animation_time : float = 1.0
 var camera_start : Vector3
 var camera_end : Vector3
 
+func przegranko():
+	pass
 
 func _ready():
 	immobilize()

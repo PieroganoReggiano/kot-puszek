@@ -40,8 +40,9 @@ func spawn_object():
 	if not enabled:
 		return
 	if spawn_counter >= spawn_count:
-		spawn_counter += 1
 		return
+		
+	spawn_counter += 1
 		
 	var obj = object_to_load.instantiate()
 	obj.set_script(script_to_load)

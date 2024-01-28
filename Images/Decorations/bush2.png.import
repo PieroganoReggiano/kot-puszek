@@ -3,26 +3,25 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4hphqb7faip2"
-path.s3tc="res://.godot/imported/bush2.png-aa55913f65044cef55827e65e1ed534c.s3tc.ctex"
+path="res://.godot/imported/bush2.png-aa55913f65044cef55827e65e1ed534c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Images/Decorations/bush2.png"
-dest_files=["res://.godot/imported/bush2.png-aa55913f65044cef55827e65e1ed534c.s3tc.ctex"]
+dest_files=["res://.godot/imported/bush2.png-aa55913f65044cef55827e65e1ed534c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

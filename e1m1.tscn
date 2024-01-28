@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bff0r2nv5n3nv"]
+[gd_scene load_steps=50 format=3 uid="uid://bff0r2nv5n3nv"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_03oag"]
 [ext_resource type="Script" path="res://Scripts/DemoLevelScript.gd" id="1_l1qem"]
@@ -37,6 +37,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dsbr5vpcrqc0b" path="res://Images/Decorations/grass.tres" id="20_3wlwv"]
 [ext_resource type="SpriteFrames" uid="uid://cb22lowa48y3" path="res://Images/Decorations/flower3.tres" id="20_jm7mj"]
 [ext_resource type="SpriteFrames" uid="uid://lypf72yl6hmg" path="res://Images/Decorations/flower4.tres" id="21_judem"]
+[ext_resource type="SpriteFrames" uid="uid://da3pwv52ky3os" path="res://Images/Decorations/barrel1.tres" id="31_5o0u3"]
+[ext_resource type="SpriteFrames" uid="uid://dgalaq205tjfa" path="res://Images/Decorations/barrel2.tres" id="32_s31hy"]
 [ext_resource type="PlaneMesh" uid="uid://dp0a73pqxgdrq" path="res://Objects/manhole.tres" id="39_v24kw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_07ub2"]
@@ -49,7 +51,7 @@ size = Vector2(200, 200)
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4hjd"]
 size = Vector3(512, 2, 512)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hdj5y"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ve5b3"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -61,7 +63,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_iivs7"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8eba"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -73,7 +75,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4riol"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qbqvt"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -85,7 +87,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7h4wm"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsc5u"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -97,7 +99,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_c1b6y"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_exgrp"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -273,6 +275,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137.787, 1.05002, 113.692)
 mesh = ExtResource("39_v24kw")
 skeleton = NodePath("../..")
 
+[node name="Manhole12" type="MeshInstance3D" parent="Decorations3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -177.064, 1.05002, 113.692)
+mesh = ExtResource("39_v24kw")
+skeleton = NodePath("../..")
+
 [node name="Manhole5" type="MeshInstance3D" parent="Decorations3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -155.921, 1.05002, 113.692)
 mesh = ExtResource("39_v24kw")
@@ -280,6 +287,11 @@ skeleton = NodePath("../..")
 
 [node name="Manhole6" type="MeshInstance3D" parent="Decorations3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -154.037, 1.05002, 90.3654)
+mesh = ExtResource("39_v24kw")
+skeleton = NodePath("../..")
+
+[node name="Manhole13" type="MeshInstance3D" parent="Decorations3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -176.985, 1.05003, 90.3701)
 mesh = ExtResource("39_v24kw")
 skeleton = NodePath("../..")
 
@@ -326,6 +338,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -155.19, 1.04598, 101.841)
 mesh = ExtResource("10_diss7")
 skeleton = NodePath("../..")
 
+[node name="Canals5" type="MeshInstance3D" parent="Decorations3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -174.902, 1.04598, 101.841)
+mesh = ExtResource("10_diss7")
+skeleton = NodePath("../..")
+
 [node name="Canals3" type="MeshInstance3D" parent="Decorations3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.382, 1.04598, 78.9716)
 mesh = ExtResource("10_diss7")
@@ -357,7 +374,7 @@ dont_block = true
 [node name="Foliage1" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -166.848, 2.36871, 102.684)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_hdj5y")
+sprite_frames = SubResource("SpriteFrames_ve5b3")
 dont_block = true
 
 [node name="Foliage3" parent="Decorations" instance=ExtResource("8_lxguc")]
@@ -402,8 +419,20 @@ script = ExtResource("9_5xqrx")
 sprite_frames = ExtResource("15_wo21o")
 dont_block = true
 
+[node name="Trash14" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.64, 1.61886, 111.976)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("15_wo21o")
+dont_block = true
+
 [node name="Trash8" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.379, 1.61886, 107.592)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("15_wo21o")
+dont_block = true
+
+[node name="Trash15" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.678, 1.61886, 106.27)
 script = ExtResource("9_5xqrx")
 sprite_frames = ExtResource("15_wo21o")
 dont_block = true
@@ -415,13 +444,79 @@ sprite_frames = ExtResource("16_mu23y")
 dont_block = true
 
 [node name="Trash3" parent="Decorations" instance=ExtResource("8_lxguc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -147.953, 1.61886, 104.142)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.328, 1.61886, 101.935)
 script = ExtResource("9_5xqrx")
 sprite_frames = ExtResource("16_mu23y")
 dont_block = true
 
 [node name="Trash4" parent="Decorations" instance=ExtResource("8_lxguc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -147.953, 1.61886, 104.142)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -147.976, 1.61886, 104.142)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("16_mu23y")
+dont_block = true
+
+[node name="Trash16" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.013, 1.61886, 105.265)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("14_injk5")
+dont_block = true
+
+[node name="Trash17" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -166.751, 1.61886, 103.404)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("14_injk5")
+dont_block = true
+
+[node name="Trash18" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -166.751, 1.61886, 103.404)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("14_injk5")
+dont_block = true
+
+[node name="Trash19" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.053, 1.61886, 106.078)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("15_wo21o")
+dont_block = true
+
+[node name="Trash20" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.925, 1.61886, 107.07)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("16_mu23y")
+dont_block = true
+
+[node name="Trash21" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.387, 1.61886, 104.213)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("16_mu23y")
+dont_block = true
+
+[node name="Trash22" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -169.035, 1.61886, 106.421)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("16_mu23y")
+dont_block = true
+
+[node name="Trash10" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.101, 1.63341, 111.225)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("14_injk5")
+dont_block = true
+
+[node name="Trash11" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.959, 1.63341, 111.835)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("16_mu23y")
+dont_block = true
+
+[node name="Trash12" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.811, 1.63341, 112.119)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("16_mu23y")
+dont_block = true
+
+[node name="Trash13" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.077, 1.63341, 112.948)
 script = ExtResource("9_5xqrx")
 sprite_frames = ExtResource("16_mu23y")
 dont_block = true
@@ -429,7 +524,7 @@ dont_block = true
 [node name="Foliage2" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -163.342, 1.64918, 105.121)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_iivs7")
+sprite_frames = SubResource("SpriteFrames_y8eba")
 dont_block = true
 
 [node name="Flower0" parent="Decorations" instance=ExtResource("8_lxguc")]
@@ -483,19 +578,19 @@ dont_block = true
 [node name="Bush0" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.397, 2.61572, 134.64)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_4riol")
+sprite_frames = SubResource("SpriteFrames_qbqvt")
 dont_block = true
 
 [node name="Bush1" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.476, 2.61572, 135.686)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_7h4wm")
+sprite_frames = SubResource("SpriteFrames_gsc5u")
 dont_block = true
 
 [node name="Bush2" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.71, 2.61572, 136.599)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_c1b6y")
+sprite_frames = SubResource("SpriteFrames_exgrp")
 dont_block = true
 
 [node name="Flower5" parent="Decorations" instance=ExtResource("8_lxguc")]
@@ -552,8 +647,38 @@ script = ExtResource("9_5xqrx")
 sprite_frames = ExtResource("20_3wlwv")
 dont_block = true
 
+[node name="Grass6" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.46, 1.36597, 100.353)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("20_3wlwv")
+dont_block = true
+
+[node name="Grass7" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.964, 1.36597, 99.9323)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("20_3wlwv")
+dont_block = true
+
+[node name="Grass8" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.749, 1.36597, 99.5348)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("20_3wlwv")
+dont_block = true
+
+[node name="Grass9" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.981, 1.36597, 99.9728)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("20_3wlwv")
+dont_block = true
+
+[node name="Grass10" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.024, 1.36597, 100.618)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("20_3wlwv")
+dont_block = true
+
 [node name="Rock1" parent="Decorations" instance=ExtResource("8_lxguc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.549, 1.46149, 109.196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.549, 1.46149, 108.636)
 script = ExtResource("9_5xqrx")
 sprite_frames = ExtResource("14_5a64n")
 dont_block = true
@@ -577,7 +702,7 @@ sprite_frames = ExtResource("19_ry0jp")
 dont_block = true
 
 [node name="Signpost1" parent="Decorations" instance=ExtResource("8_lxguc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136.785, 1.83528, 89.9474)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.9, 1.83528, 89.9474)
 script = ExtResource("9_5xqrx")
 sprite_frames = ExtResource("19_ry0jp")
 dont_block = true
@@ -592,6 +717,24 @@ dont_block = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.926, 1.46149, 113.641)
 script = ExtResource("9_5xqrx")
 sprite_frames = ExtResource("18_qxfqt")
+dont_block = true
+
+[node name="Barrel0" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -149.505, 1.96933, 93.6131)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("31_5o0u3")
+dont_block = true
+
+[node name="Barrel2" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -179.268, 1.96933, 102.519)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("31_5o0u3")
+dont_block = true
+
+[node name="Barrel1" parent="Decorations" instance=ExtResource("8_lxguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.998, 1.46149, 89.0529)
+script = ExtResource("9_5xqrx")
+sprite_frames = ExtResource("32_s31hy")
 dont_block = true
 
 [node name="Bottle0" parent="Decorations" instance=ExtResource("8_lxguc")]
@@ -668,7 +811,7 @@ gravity_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145.229, 3.63879, 104.199)
 script = ExtResource("9_dftc1")
 interval = 5.0
-spawn_count = 25
+spawn_count = 5
 target = NodePath("../../Drunkard")
 trigger_react_to = NodePath("../../Drunkard")
 difficulty = 5.0
