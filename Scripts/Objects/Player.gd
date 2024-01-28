@@ -27,7 +27,7 @@ func _ready():
 	body.is_player = true
 	
 	body.collision_width_override = 13
-	body.collision_height_offsety = 3
+	body.collision_height_offsety = 0
 	
 	body.attack_class = 1
 	body.max_health = 0 #max_health

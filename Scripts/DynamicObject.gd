@@ -7,6 +7,7 @@ extends Node3D
 @export var gravity_enabled = false
 @export var gravity:float = 30
 
+
 @export var max_health:float = 0
 @export var stunnable:bool = false
 @export var attack_strength:float = 1.0
@@ -17,7 +18,7 @@ extends Node3D
 @export var acceleration:float = 3
 @export var deceleration:float = 3
 
-@export var ignore_blocking_collision:bool = false
+@export var dont_block:bool = false
 @export var collision_width_override:float = 0
 @export var collision_height_override:float = 0
 @export var collision_height_offsety:float = 0
@@ -77,6 +78,21 @@ var sprite_size
 
 var initialized:bool = false
 
+func non_blocking_interaction(object):
+	var object_parent = object.get_parent()
+	if(dont_block):
+		if(object != body):
+			if object_parent != null:
+				var hm = object_parent.has_method("collision_DynamicObject_callback")
+				if (hm and
+				object.get_script() != null and
+				object.get_script().get_path() == "res://Scripts/DynamicObject.gd"):
+					# collided with DynamicObject, run method dedicated for our nice objects
+					object_parent.collision_DynamicObject_callback(self.get_parent()) # parent will be DynamicObject node
+				elif(object_parent.has_method("collision_generic_callback")):
+					# collided with something, run generic method
+					object_parent.collision_generic_callback(self)
+	
 func init():
 	if(sprite_frames != null):
 		initialized = true
@@ -111,10 +127,13 @@ func init():
 		
 	#interaction_shape.process_mode = Node.PROCESS_MODE_DISABLED
 	#attack_shape.process_mode = Node.PROCESS_MODE_DISABLED
+	#collision_shape.queue_free()
 	
-	if ignore_blocking_collision:
-		collision_shape.disabled = true
-	
+	if(dont_block):
+		body.collision_layer = 1 << 1
+		body.collision_mask = 1 << 1
+	#body.get_node("attack_area").collision_layer = 1
+	#body.get_node("interaction_area").collision_layer = 1
 	#interaction_shape.get_node("Collision").shape.height += 99
 	get_node("sprite_center/Sprite").connect("animation_finished", _on_sprite_animation_finished)
 		

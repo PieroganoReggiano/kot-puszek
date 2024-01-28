@@ -20,6 +20,7 @@ script = ExtResource("1_gr72u")
 gravity_enabled = true
 gravity = 20.0
 jump_speed = 4.0
+dont_block = null
 
 [node name="node_center" type="Node3D" parent="Body"]
 
@@ -42,3 +43,5 @@ shape = SubResource("CylinderShape3D_k1dla")
 
 [node name="iCollision" type="CollisionShape3D" parent="Body/interaction_area"]
 shape = SubResource("CylinderShape3D_hmcaq")
+
+[connection signal="body_entered" from="Body/interaction_area" to="Body" method="non_blocking_interaction"]

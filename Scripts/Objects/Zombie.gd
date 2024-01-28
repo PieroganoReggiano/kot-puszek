@@ -42,7 +42,7 @@ func _ready():
 	
 	body.collision_width_override = 16
 	body.collision_height_override = 10
-	body.collision_height_offsety = -10
+	body.collision_height_offsety = -17
 	
 	
 	body.init()

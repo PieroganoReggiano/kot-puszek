@@ -4,6 +4,8 @@ extends Node3D
 @export var object_to_load:PackedScene
 @export var script_to_load:Script
 @export var interval:float = 1
+@export var enabled:bool = false
+@export var trigger_react_to:Node3D
 
 @onready var scene_root = get_parent()
 
@@ -18,8 +20,16 @@ func _ready():
 		logic_timer.set_wait_time(interval)
 		logic_timer.start()
 		get_node("Area3D/CSGBox3D").queue_free()
+		
+func enable(body=null):
+	enabled = true
+func disable(body=null):
+	enabled = false
 
 func spawn_object():
+	if not enabled:
+		return
+		
 	if object_to_load == null:
 		print("SPAWNER HAD NO OBJECT TO LOAD!")
 		return
