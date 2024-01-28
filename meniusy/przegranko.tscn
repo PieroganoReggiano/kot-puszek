@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://005qmh3npm0t"]
+
+[ext_resource type="Script" path="res://meniusy/przegranko.gd" id="1_pmhte"]
+[ext_resource type="AudioStream" uid="uid://b70k78f3s5ar3" path="res://musicco-patternen/przegranko.wav" id="2_ck8pp"]
+[ext_resource type="SpriteFrames" uid="uid://bsr8ou576vgnp" path="res://Images/Zombie/frames/zombie_dance/zombie_dance.tres" id="4_js35c"]
+[ext_resource type="FontFile" uid="uid://chacug4g3swd3" path="res://foncik/PixelifySans-SemiBold.ttf" id="5_u83og"]
+[ext_resource type="Texture2D" uid="uid://c3wuh8o08c4jg" path="res://meniusy/butonik2.png" id="6_dxkpy"]
+[ext_resource type="Texture2D" uid="uid://bvpy80pqxem3n" path="res://meniusy/butonik-najech2.png" id="7_1k2lr"]
+[ext_resource type="FontFile" uid="uid://dbaodg3evongo" path="res://foncik/PixelifySans-Medium.ttf" id="8_c4u2c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_on11e"]
+font = ExtResource("8_c4u2c")
+font_size = 34
+
+[node name="Przegranko" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pmhte")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ck8pp")
+volume_db = 4.002
+attenuation = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.760784, 0.756863, 0.992157, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+offset_left = 383.255
+offset_top = 291.0
+offset_right = 423.255
+offset_bottom = 331.0
+color = Color(1, 1, 1, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/ColorRect2"]
+texture_filter = 1
+scale = Vector2(5.975, 5.975)
+sprite_frames = ExtResource("4_js35c")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -542.0
+offset_top = -227.0
+offset_right = 552.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_u83og")
+theme_override_font_sizes/font_size = 152
+text = "drugie miejsce"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -297.555
+offset_top = -56.0
+offset_right = -81.8257
+offset_bottom = 94.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -3.14159
+theme_override_constants/margin_left = -160
+
+[node name="wracanie" type="TextureButton" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(286, 150)
+layout_mode = 2
+size_flags_vertical = 3
+action_mode = 0
+texture_normal = ExtResource("6_dxkpy")
+texture_pressed = ExtResource("7_1k2lr")
+texture_hover = ExtResource("7_1k2lr")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/wracanie"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wracanie"
+label_settings = SubResource("LabelSettings_on11e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(564, 349)
+scale = Vector2(80, 80)
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/wracanie" to="." method="_on_wracanie_pressed"]
