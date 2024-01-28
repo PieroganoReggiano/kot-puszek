@@ -31,6 +31,7 @@ var beers_drank:int = 0
 
 var alcohol_level:float = 0
 var dead:bool = false
+var death_timer:Timer = Timer.new()
 
 # ---- non user-modifiable parameters
 var alcohol_per_beer:float = 20
@@ -86,6 +87,12 @@ func death(attacker):
 	body.play_animation("death")
 	navigation_ready = false
 	dead = true
+	death_timer.timeout.connect(dead_seriously)
+	death_timer.set_wait_time(3)
+	death_timer.one_shot = true
+	death_timer.start()
+	
+func dead_seriously():
 	if(has_node("../../..")):
 		var rootnode = get_node("../../..")
 		if rootnode.has_method("przegranko"):
@@ -216,6 +223,8 @@ func _ready():
 	
 	body.collision_width_override = 16
 	body.collision_height_offsety = 0
+	
+	
 	body.init()
 	
 	if (navigation_path != null and navigation_path.size() > 0) or navigation_prefix != "":
@@ -234,6 +243,8 @@ func _ready():
 	
 	sound_player = AudioStreamPlayer3D.new()
 	body.add_child(sound_player)
+	if not Engine.is_editor_hint():
+		add_child(death_timer)
 
 func collision_DynamicObject_callback(object):
 	# detect can

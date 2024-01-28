@@ -74,9 +74,9 @@ func _on_timer_timeout():
 		h3.visible = (drunkard_node.body.health >= 3)
 		h4.visible = (drunkard_node.body.health >= 4)
 		h5.visible = (drunkard_node.body.health >= 5)
-		h6.visible = (drunkard_node.body.health >= 6)
-		h7.visible = (drunkard_node.body.health >= 7)
-		h8.visible = (drunkard_node.body.health >= 8)
+		h6.visible = false #(drunkard_node.body.health >= 6)
+		h7.visible = false # (drunkard_node.body.health >= 7)
+		h8.visible = false # (drunkard_node.body.health >= 8)
 		
 	if(player_node != null):
 		cat_score.text = str(int(player_node.points))
