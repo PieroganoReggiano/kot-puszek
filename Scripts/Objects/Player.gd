@@ -110,6 +110,8 @@ func collision_DynamicObject_callback(object):
 			points += 25
 			body.update_animation()
 			object.queue_free()
+			sound_player.stream = load("res://pucha2.ogg")
+			sound_player.play()
 
 	if(object.name == "Drunkard" and not object.dead):
 		if has_can:

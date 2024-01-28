@@ -68,7 +68,17 @@ func navigation_prefix_get_point(idx):
 func drink_beer():
 	alcohol_level += alcohol_per_beer
 	beers_drank += 1
+	sound_player.stream = load("res://PICIE.wav")
+	sound_player.play()
+	sound_player.finished.connect(laugh)
 	anim_drink()
+	
+func laugh():
+	sound_player.finished.disconnect(laugh)
+	if (sound_player.stream != load("res://PICIE.wav")):
+		return
+	sound_player.stream = load("res://smiech.wav")
+	sound_player.play()
 	
 func death(attacker):
 	body.force_stun = true

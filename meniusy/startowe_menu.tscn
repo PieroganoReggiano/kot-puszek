@@ -49,7 +49,7 @@ texture_normal = ExtResource("3_erpvv")
 texture_pressed = ExtResource("4_5pvth")
 texture_hover = ExtResource("4_5pvth")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="HSplitContainer/MarginContainer/VBoxContainer2/Start"]
 layout_mode = 1
@@ -58,28 +58,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Gaming"
-label_settings = SubResource("LabelSettings_on11e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Credits" type="TextureButton" parent="HSplitContainer/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("3_erpvv")
-texture_pressed = ExtResource("4_5pvth")
-texture_hover = ExtResource("4_5pvth")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="HSplitContainer/MarginContainer/VBoxContainer2/Credits"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "PIWO"
+text = "Play"
 label_settings = SubResource("LabelSettings_on11e")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -91,7 +70,7 @@ texture_normal = ExtResource("3_erpvv")
 texture_pressed = ExtResource("4_5pvth")
 texture_hover = ExtResource("4_5pvth")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="HSplitContainer/MarginContainer/VBoxContainer2/Quit"]
 layout_mode = 1
@@ -100,7 +79,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Spaduwa"
+text = "Quit"
 label_settings = SubResource("LabelSettings_on11e")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -114,5 +93,4 @@ stream = ExtResource("6_acgal")
 attenuation = 0.0
 
 [connection signal="pressed" from="HSplitContainer/MarginContainer/VBoxContainer2/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="HSplitContainer/MarginContainer/VBoxContainer2/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="HSplitContainer/MarginContainer/VBoxContainer2/Quit" to="." method="_on_quit_pressed"]
