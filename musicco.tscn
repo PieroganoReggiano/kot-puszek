@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://diesdf2sh8w5d"]
+[gd_scene load_steps=20 format=3 uid="uid://diesdf2sh8w5d"]
 
 [ext_resource type="Script" path="res://musicco.gd" id="1_gw8w3"]
 [ext_resource type="AudioStream" uid="uid://dnh738o7kuwfc" path="res://musicco-patternen/music-chill0.wav" id="2_mbikr"]
@@ -16,6 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://dod8jovy73udq" path="res://musicco-patternen/music-large-fight2.wav" id="14_amiqx"]
 [ext_resource type="AudioStream" uid="uid://b86ceg2a4un30" path="res://musicco-patternen/music-large-fight3.wav" id="15_oh2a6"]
 [ext_resource type="AudioStream" uid="uid://bj58v6ps8xvhu" path="res://musicco-patternen/music-hard-style0.wav" id="16_5tuqx"]
+[ext_resource type="AudioStream" uid="uid://ckkesyfk15uuv" path="res://musicco-patternen/music-hard-style1.wav" id="17_37arg"]
+[ext_resource type="AudioStream" uid="uid://b5yys11ebk87e" path="res://musicco-patternen/music-hard-style2.wav" id="18_3m47a"]
+[ext_resource type="AudioStream" uid="uid://00wr0bchiucc" path="res://musicco-patternen/music-hard-style4.wav" id="19_7uuuo"]
 
 [node name="Musicco" type="AudioStreamPlayer"]
 script = ExtResource("1_gw8w3")
@@ -25,6 +28,6 @@ streams_danger = Array[AudioStream]([ExtResource("6_jrldc"), ExtResource("7_5h2u
 loop_danger = 2
 streams_large_fight = Array[AudioStream]([ExtResource("12_0murr"), ExtResource("13_yxwyq"), ExtResource("14_amiqx"), ExtResource("15_oh2a6")])
 loop_large_fight = 2
-streams_hard_style = Array[AudioStream]([ExtResource("16_5tuqx")])
+streams_hard_style = Array[AudioStream]([ExtResource("16_5tuqx"), ExtResource("17_37arg"), ExtResource("18_3m47a"), ExtResource("18_3m47a"), ExtResource("19_7uuuo"), ExtResource("18_3m47a")])
 
 [connection signal="finished" from="." to="." method="_on_finished"]
