@@ -39,7 +39,6 @@ gravity = 30.0
 [node name="Drunkard" parent="." instance=ExtResource("2_sg15i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.732, 1.01575, 107.322)
 script = ExtResource("6_65nb8")
-gravity_enabled = true
 
 [node name="Can" parent="." instance=ExtResource("2_sg15i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -158.307, 0.609457, 116.447)

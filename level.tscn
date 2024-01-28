@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://clt23cavswubg"]
+[gd_scene load_steps=20 format=3 uid="uid://clt23cavswubg"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_5ff0w"]
 [ext_resource type="Script" path="res://Scripts/DebugCanvas.gd" id="1_maoha"]
@@ -8,14 +8,18 @@
 [ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_6xb56"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="6_gxtd0"]
 [ext_resource type="PackedScene" uid="uid://b4a0flm6lefbh" path="res://ui.tscn" id="9_s423p"]
+[ext_resource type="Script" path="res://Scripts/Objects/Pan.gd" id="9_t8n4y"]
+[ext_resource type="PackedScene" uid="uid://bci4ceemy3ams" path="res://Objects/Spawner.tscn" id="10_a8ynw"]
 [ext_resource type="Script" path="res://Scripts/Objects/Zombie.gd" id="10_h2cjh"]
+[ext_resource type="Script" path="res://Scripts/Spawner_Zombie.gd" id="11_ovv8u"]
+[ext_resource type="Script" path="res://Scripts/Spawner_Can.gd" id="12_w65ox"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_merve"]
-vertices = PackedVector3Array(-9.5, 0.752674, -9.5, -9.5, 0.752674, 9.5, 9.5, 0.752674, 9.5, 9.5, 0.752674, -9.5)
+vertices = PackedVector3Array(-99.5, 0.752674, -99.5, -99.5, 0.752674, 99.5, 99.5, 0.752674, 99.5, 99.5, 0.752674, -99.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fooj4"]
-size = Vector2(20, 20)
+size = Vector2(200, 200)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v18d"]
 albedo_texture = ExtResource("5_w60u6")
@@ -23,17 +27,18 @@ uv1_scale = Vector3(100, 100, 100)
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sfujs"]
-size = Vector2(50, 50)
+size = Vector2(200, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4hjd"]
-size = Vector3(50, 1, 50)
+size = Vector3(200, 1, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2oot"]
-size = Vector3(0.2, 1, 0.2)
+size = Vector3(1, 5, 1)
 
 [node name="Level" type="Node3D"]
 
 [node name="Can_test" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0752869, 1.22803, -6.39949)
 script = ExtResource("6_gxtd0")
 gravity_enabled = null
 gravity = false
@@ -45,17 +50,39 @@ script = ExtResource("1_maoha")
 
 [node name="DrunkLevel" type="Label" parent="Canvas"]
 offset_left = 8.0
-offset_top = 48.0
+offset_top = 168.0
 offset_right = 48.0
-offset_bottom = 71.0
-text = "test"
+offset_bottom = 191.0
+text = "DrunkLevel
+"
 
-[node name="Score" type="Label" parent="Canvas"]
+[node name="Health_Cat" type="Label" parent="Canvas"]
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 48.0
+offset_bottom = 111.0
+text = "Health_Cat"
+
+[node name="Health_Drunkard" type="Label" parent="Canvas"]
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 48.0
+offset_bottom = 151.0
+text = "Health_Drunkard"
+
+[node name="Score_Cat" type="Label" parent="Canvas"]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 48.0
 offset_bottom = 31.0
-text = "test"
+text = "Score_Cat"
+
+[node name="Score_Drunkard" type="Label" parent="Canvas"]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 48.0
+offset_bottom = 71.0
+text = "Score_Drunkard"
 
 [node name="---- Level basics ----" type="Node" parent="."]
 
@@ -76,23 +103,17 @@ offset = Vector3(0, 6, 5)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
 
-[node name="---- Level terrain ----" type="Node" parent="."]
-
 [node name="Puszek" parent="." instance=ExtResource("3_cbims")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258103, 14.9954, 4.94257)
 script = ExtResource("4_3etlu")
-gravity_enabled = true
-speed = 7.0
-acceleration = 6.0
-deceleration = 10.0
-jump_speed = 120.0
-gravity = 30.0
 
 [node name="Drunkard" parent="." instance=ExtResource("3_cbims")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.918547, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2906, 2.768, -0.189246)
 script = ExtResource("6_6xb56")
-gravity_enabled = true
-speed = 1.4
+navigation_path = PackedVector3Array(-4, 2, 0, -4, 2, 17, 7, 2, 12, 7, 2, -22, -17, 2, -14, -5, 2, -14)
+max_health = 5.0
+
+[node name="---- Level terrain ----" type="Node" parent="."]
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -105,37 +126,49 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_t4hjd")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66196, 0.494319, 0)
+[node name="Pilar" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14084, 1.73468, -0.786997)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pilar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_l2oot")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
-size = Vector3(0.2, 1, 0.2)
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+size = Vector3(1, 5, 1)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98128, 0.69129, -0.00446939)
+[node name="Pilar2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14084, 0.174078, 2.08189)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pilar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_l2oot")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2"]
-size = Vector3(0.2, 1, 0.2)
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+size = Vector3(1, 5, 1)
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14084, 0.945544, -0.786997)
+[node name="Pilar3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7992, -1.27286, 0.729605)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pilar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_l2oot")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D3"]
-size = Vector3(0.2, 1, 0.2)
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+size = Vector3(1, 5, 1)
 
 [node name="---- Level interactive ----" type="Node" parent="."]
 
 [node name="Can" parent="." instance=ExtResource("3_cbims")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.609465, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35489, 0)
+script = ExtResource("6_gxtd0")
+gravity_enabled = null
+gravity = false
+
+[node name="Can2" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.42504, 1.37202, 11.2682)
 script = ExtResource("6_gxtd0")
 gravity_enabled = null
 gravity = false
@@ -144,9 +177,40 @@ gravity = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.317196, 1.27723, 1.61213)
 script = ExtResource("10_h2cjh")
 
-[node name="ZombieDynamic" parent="." instance=ExtResource("3_cbims")]
+[node name="ZombieDynamic" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_cbims")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42549, 0.418671, 0)
 script = ExtResource("10_h2cjh")
-speed = 1.0
+target = NodePath("../Puszek")
 
 [node name="ui" parent="." instance=ExtResource("9_s423p")]
+
+[node name="Pan" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47793, 11.3608)
+script = ExtResource("9_t8n4y")
+
+[node name="Pan2" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.38232, 1.53107, 0)
+script = ExtResource("9_t8n4y")
+
+[node name="Pan3" parent="." instance=ExtResource("3_cbims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55478, -13.4607)
+script = ExtResource("9_t8n4y")
+
+[node name="ZombieSpawner_Drunkard" parent="." node_paths=PackedStringArray("target") instance=ExtResource("10_a8ynw")]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 2.54425, 14.6916, -3.86664)
+script = ExtResource("11_ovv8u")
+interval = 3.0
+target = NodePath("../Drunkard")
+difficulty = 9.0
+
+[node name="ZombieSpawner_Drunkard2" parent="." instance=ExtResource("10_a8ynw")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 1.87399, 17.5804, 0.840941)
+script = ExtResource("12_w65ox")
+interval = 3.0
+
+[node name="ZombieSpawner_Puszek" parent="." node_paths=PackedStringArray("target") instance=ExtResource("10_a8ynw")]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 2.54425, 10.962, -3.86664)
+script = ExtResource("11_ovv8u")
+interval = 1.5
+target = NodePath("../Puszek")
+difficulty = 11.0

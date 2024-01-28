@@ -3,26 +3,25 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ppktdj11jpve"
-path.s3tc="res://.godot/imported/zombie_walk2.png-3fbbeee1e5e2cc7a7b4ceac8b5ce0e3f.s3tc.ctex"
+path="res://.godot/imported/zombie_walk2.png-3fbbeee1e5e2cc7a7b4ceac8b5ce0e3f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Images/Zombie/frames/move_down/zombie_walk2.png"
-dest_files=["res://.godot/imported/zombie_walk2.png-3fbbeee1e5e2cc7a7b4ceac8b5ce0e3f.s3tc.ctex"]
+dest_files=["res://.godot/imported/zombie_walk2.png-3fbbeee1e5e2cc7a7b4ceac8b5ce0e3f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
