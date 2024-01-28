@@ -9,7 +9,20 @@ var camera_start : Vector3
 var camera_end : Vector3
 
 func przegranko():
-	pass
+	$Musicco.order_chill()
+	$Musicco.force_order()
+	$Musicco.should_play = false
+	while $MenuContainer.get_child_count() > 0:
+		var menu = $MenuContainer.get_child(0)
+		$MenuContainer.remove_child(menu)
+		menu.queue_free()
+	while $LevelContainer.get_child_count() > 0:
+		var level = $LevelContainer.get_child(0)
+		$LevelContainer.remove_child(level)
+		level.queue_free()
+	var defeat_menu = load("res://meniusy/przegranko.tscn").instantiate()
+	$MenuContainer.add_child(defeat_menu)
+	time_to_start = -20000.0
 
 func _ready():
 	immobilize()
