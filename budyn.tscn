@@ -10,6 +10,8 @@
 render_priority = 0
 shader = ExtResource("1_geukr")
 shader_parameter/tile_choice = Vector2i(1, 0)
+shader_parameter/tile2 = Vector2i(14, 6)
+shader_parameter/tile2_amount = 0.265
 shader_parameter/tile_map_size = Vector2(512, 512)
 shader_parameter/tiles = ExtResource("2_q6cr0")
 

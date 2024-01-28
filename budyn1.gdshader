@@ -4,6 +4,9 @@ uniform sampler2D tiles : filter_nearest;
 
 uniform ivec2 tile_choice = ivec2(0);
 
+uniform ivec2 tile2 = ivec2(0);
+uniform float tile2_amount = 0.0;
+
 varying vec3 uv3d;
 varying vec3 uv2d;
 uniform vec2 tile_map_size = vec2(512.0, 512.0);
@@ -17,10 +20,16 @@ void vertex() {
 }
 
 void fragment() {
+	
+	ivec2 serious_tile_shoice = tile_choice;
+	
+	if (fract(floor(uv2d.x + 1.0) / 4.0) < tile2_amount && fract(floor(uv2d.y - 1.0) / 4.0) < tile2_amount)
+		serious_tile_shoice = tile2;
+	
 	ivec2 tiles_count = ivec2(tile_map_size / tile_dimensions);
 	vec2 uv = uv2d.xy;
 	uv = fract(uv);
-	uv += vec2(tile_choice);
+	uv += vec2(serious_tile_shoice);
 	uv /= vec2(ivec2(tiles_count.x, tiles_count.y));
 	ALBEDO.rgb = texture(tiles, uv.xy).xyz;
 	ALBEDO.rgb *= 0.8;
