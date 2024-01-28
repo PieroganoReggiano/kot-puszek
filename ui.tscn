@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4a0flm6lefbh"]
+[gd_scene load_steps=9 format=3 uid="uid://b4a0flm6lefbh"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_wspju"]
 [ext_resource type="Script" path="res://Scripts/UI/koto_ui.gd" id="2_vp6va"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c3wuh8o08c4jg" path="res://meniusy/butonik2.png" id="5_7i47y"]
 [ext_resource type="Texture2D" uid="uid://bvpy80pqxem3n" path="res://meniusy/butonik-najech2.png" id="6_jfr3s"]
 [ext_resource type="FontFile" uid="uid://dbaodg3evongo" path="res://foncik/PixelifySans-Medium.ttf" id="7_tjdba"]
-[ext_resource type="AudioStream" uid="uid://rcat6rmlixjo" path="res://meniusy/pum_menu.ogg" id="8_j3p1i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_trccm"]
 font = ExtResource("7_tjdba")
@@ -50,11 +49,13 @@ theme_override_constants/margin_bottom = 320
 
 [node name="Empty" type="TextureRect" parent="koto_ui/Control/MarginContainer"]
 visible = false
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_37pu3")
 stretch_mode = 4
 
 [node name="Animatione" type="TextureRect" parent="koto_ui/Control/MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("4_6hfjl")
 stretch_mode = 4
@@ -144,9 +145,6 @@ vertical_alignment = 1
 visible = false
 layout_mode = 2
 text = "Sraken"
-
-[node name="MeniuMusik" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_j3p1i")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.35

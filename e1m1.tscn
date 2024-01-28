@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bff0r2nv5n3nv"]
+[gd_scene load_steps=11 format=3 uid="uid://bff0r2nv5n3nv"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_03oag"]
 [ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="2_sg15i"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_65nb8"]
 [ext_resource type="PackedScene" uid="uid://lotnu512ab0q" path="res://budyn.tscn" id="6_ygdt8"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="8_2rudo"]
-[ext_resource type="PackedScene" path="res://ui.tscn" id="10_x6f4r"]
 [ext_resource type="PackedScene" uid="uid://bqdogswsqsf8q" path="res://Blockade.tscn" id="11_g16fm"]
 [ext_resource type="PackedScene" uid="uid://n6qwde4pj4k0" path="res://smietnik.tscn" id="12_ni4wl"]
 
@@ -149,7 +148,7 @@ size = Vector3(9, 10, 18)
 
 [node name="Budyn2" parent="Budyny" instance=ExtResource("6_ygdt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -187, 1, 100)
-size = Vector3(8, 10, 16)
+size = Vector3(6, 10, 16)
 
 [node name="Budyn23" parent="Budyny" instance=ExtResource("6_ygdt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 1, 67)
@@ -197,5 +196,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 2, 117)
 
 [node name="DynamicObject" parent="." instance=ExtResource("12_ni4wl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162, 1.8, 108)
-
-[node name="ui" parent="." instance=ExtResource("10_x6f4r")]

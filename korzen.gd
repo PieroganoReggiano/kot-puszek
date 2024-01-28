@@ -8,11 +8,13 @@ var camera_animation_time : float = 1.0
 var camera_start : Vector3
 var camera_end : Vector3
 
+
 func _ready():
 	immobilize()
 	var camera = _get_camera()
 	camera.target = null
 	camera.speed = 5
+	$ui.znikanko()
 	
 func _get_puszek():
 	var level = get_node_or_null("LevelContainer/Level")
@@ -29,6 +31,9 @@ func _get_camera():
 		return null
 	var camera = level.get_node_or_null("Camera3D")
 	return camera
+
+func plumkaj():
+	$PlumPlayer.play()
 
 func begin_game():
 	create_level_if_inexistent()
@@ -91,20 +96,57 @@ func pop_menu():
 	var menu = $MenuContainer.get_child(0)
 	$MenuContainer.remove_child(menu)
 	menu.queue_free()
+	
+func victory():
+	$Musicco.order_chill()
+	$Musicco.force_order()
+	$Musicco.should_play = false
+	while $MenuContainer.get_child_count() > 0:
+		var menu = $MenuContainer.get_child(0)
+		$MenuContainer.remove_child(menu)
+		menu.queue_free()
+	while $LevelContainer.get_child_count() > 0:
+		var level = $LevelContainer.get_child(0)
+		$LevelContainer.remove_child(level)
+		level.queue_free()
+	var victory_menu = load("res://meniusy/wygranko.tscn").instantiate()
+	$MenuContainer.add_child(victory_menu)
+	time_to_start = -20000.0
 		
+func full_reset():
+	$Musicco.order_chill()
+	$Musicco.force_order()
+	$Musicco.should_play = true
+	while $MenuContainer.get_child_count() > 0:
+		var menu = $MenuContainer.get_child(0)
+		$MenuContainer.remove_child(menu)
+		menu.queue_free()
+	while $LevelContainer.get_child_count() > 0:
+		var level = $LevelContainer.get_child(0)
+		$LevelContainer.remove_child(level)
+		level.queue_free()
+	var menu = load("res://meniusy/startowe_menu.tscn").instantiate()
+	$MenuContainer.add_child(menu)
+	create_level_if_inexistent()
+	
+
 func _process(delta):
+	if Input.is_key_pressed(KEY_0):
+		victory()
 	if time_to_start < -10000.0:
 		return
 	time_to_start -= delta
 	var camera = _get_camera()
 	var progress = (camera_animation_time - time_to_start)/camera_animation_time
-	camera.position = \
-		lerp(camera_start, camera_end, progress)
-	set_slow_camera(progress)
+	if camera:
+		camera.position = \
+			lerp(camera_start, camera_end, progress)
+		set_slow_camera(progress)
 	if time_to_start <= 0.0:
 		mobilize()
 		time_to_start = -20000.0
 		set_fast_camera()
+		$ui.pojawianko()
 	elif (time_to_start - 0.1 < $Musicco.get_remaining()):
 		$Musicco.order_beginning()
 	

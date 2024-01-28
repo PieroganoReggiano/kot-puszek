@@ -26,6 +26,7 @@ var rng = RandomNumberGenerator.new()
 var ordered_phase = 0
 var current_phase = 0
 var current_pattern_number = 0
+var should_play = true
 
 func order_chill():
 	ordered_phase = 0
@@ -102,6 +103,10 @@ func _ready():
 	_cycle()
 			 
 func _process(delta):
+	if not should_play:
+		stop()
+	if not playing and should_play:
+		play()
 	if Input.is_physical_key_pressed(KEY_Y):
 		order_chill()
 	if Input.is_physical_key_pressed(KEY_U):

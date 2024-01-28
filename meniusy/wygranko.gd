@@ -17,3 +17,12 @@ func _process(delta):
 	hmm -= int(hmm)
 	$CanvasLayer/TextureRect.visible = hmm > 0.5
 	$CanvasLayer/TextureRect2.visible = hmm <= 0.5
+
+
+
+func _on_wracanie_pressed():
+	var korzen = get_node_or_null("../..")
+	if (korzen == null):
+		get_tree().change_scene_to_file("res://meniusy/startowe_menu.tscn")
+	else:
+		korzen.full_reset()
