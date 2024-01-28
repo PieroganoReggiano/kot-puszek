@@ -1,0 +1,15 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://b6u8h4vie8kw8"]
+
+[ext_resource type="Texture2D" uid="uid://b4hphqb7faip2" path="res://Images/Decorations/bush2.png" id="1_uhh3w"]
+
+[resource]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uhh3w")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

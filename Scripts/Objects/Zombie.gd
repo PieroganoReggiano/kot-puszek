@@ -42,7 +42,7 @@ func _ready():
 	
 	body.collision_width_override = 16
 	body.collision_height_override = 10
-	body.collision_height_offsety = -10
+	body.collision_height_offsety = -17
 	
 	
 	body.init()
@@ -119,6 +119,6 @@ func collision_generic_callback(collider):
 	pass
 	
 func collision_DynamicObject_callback(object):
-	if(object.name in ["Drunkard", "Puszek"]):
+	if(object.name in ["Drunkard", "Puszek", "Player"]):
 		body.attack()
 	#if object.name

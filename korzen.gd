@@ -8,6 +8,8 @@ var camera_animation_time : float = 1.0
 var camera_start : Vector3
 var camera_end : Vector3
 
+func przegranko():
+	pass
 
 func _ready():
 	immobilize()
@@ -22,8 +24,15 @@ func _get_puszek():
 		return null
 	var puszek = level.get_node_or_null("Player")
 	if (puszek == null):
-		level.get_node_or_null("Puszek")
+		puszek = level.get_node_or_null("Puszek")
 	return puszek
+	
+func _get_drunkard():
+	var level = get_node_or_null("LevelContainer/Level")
+	if not level:
+		return null
+	var drunkard = level.get_node_or_null("Drunkard")
+	return drunkard
 
 func _get_camera():
 	var level = get_node_or_null("LevelContainer/Level")
@@ -129,6 +138,9 @@ func full_reset():
 	$MenuContainer.add_child(menu)
 	create_level_if_inexistent()
 	
+func start_level_logic():
+	mobilize()
+	get_node("LevelContainer/Level/Drunkard").start_moving = true
 
 func _process(delta):
 	if Input.is_key_pressed(KEY_0):
@@ -143,10 +155,11 @@ func _process(delta):
 			lerp(camera_start, camera_end, progress)
 		set_slow_camera(progress)
 	if time_to_start <= 0.0:
-		mobilize()
+		start_level_logic()
 		time_to_start = -20000.0
 		set_fast_camera()
 		$ui.pojawianko()
 	elif (time_to_start - 0.1 < $Musicco.get_remaining()):
 		$Musicco.order_beginning()
+	
 	

@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://b7alcrbp801hw"]
+
+[ext_resource type="Texture2D" uid="uid://dpqu2hwobmocl" path="res://Images/Decorations/glass.png" id="1_lbwbg"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lbwbg")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

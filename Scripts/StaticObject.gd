@@ -6,6 +6,7 @@ extends Node3D
 @export var is_player:bool = false
 @export var gravity_enabled = false
 @export var gravity:float = 0.2
+@export var dont_block:bool = false
 
 
 @export var collision_width_override:float = 0
@@ -53,6 +54,10 @@ func init():
 		collision_shape.shape.height = collision_height_override * sprite.pixel_size
 	if collision_height_offsety != 0:
 		collision_shape.position.y = collision_height_offsety * sprite.pixel_size #-collision_shape.shape.height # -sprite_size.y * sprite.pixel_size # Vector pointing along the Y axis = 
+	
+	if(dont_block):
+		body.collision_layer = 1 << 1
+		body.collision_mask = 1 << 1
 	
 	force_animation("idle")
 

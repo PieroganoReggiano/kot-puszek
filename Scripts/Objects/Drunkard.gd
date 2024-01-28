@@ -7,8 +7,10 @@ var acceleration:float = 2
 var deceleration:float = 4
 var jump_speed:float = 35
 var gravity:float = 10
-@export var navigation_path:PackedVector3Array
+@export var navigation_path:PackedVector3Array # defines moving path as vector3 points
+@export var navigation_prefix:String # defines moving path as list of objects that are in root/<navigation_prefix>/(0...n)
 @export var max_health:float
+@export var start_moving:bool = false
 
 @onready var body = get_node("Body")
 
@@ -18,10 +20,12 @@ var anim_timer:Timer = Timer.new()
 var navigation_agent: NavigationAgent3D = NavigationAgent3D.new()
 var navigation_point_now:int = 0
 var navigation_ready:bool = false
+var navigation_use_path:bool = true
 
 var beers_drank:int = 0
 
 var alcohol_level:float = 0
+var dead:bool = false
 
 # ---- non user-modifiable parameters
 var alcohol_per_beer:float = 20
@@ -48,6 +52,13 @@ func anim_idle():
 	anim_timer.timeout.disconnect(anim_idle)
 	body.play_animation("idle")
 	
+func navigation_prefix_point_exists(idx):
+	return get_parent().has_node(navigation_prefix + "/" + str(idx))
+func navigation_prefix_get_point(idx):
+	var obj = get_parent().get_node(navigation_prefix + "/" + str(idx))
+	var current_obj_position: Vector3 = obj.global_transform.origin
+	return current_obj_position
+	
 	
 func drink_beer():
 	alcohol_level += alcohol_per_beer
@@ -59,15 +70,22 @@ func death(attacker):
 	body.max_health = 0
 	body.play_animation("death")
 	navigation_ready = false
+	dead = true
+	if(has_node("../../..")):
+		var rootnode = get_node("../../..")
+		if rootnode.has_method("przegranko"):
+			rootnode.przegranko()
 	
 func navigation_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
 
 	# Now that the navigation map is no longer empty, set the movement target.
-	set_movement_target(navigation_path[navigation_point_now])
-	#set_movement_target(movement_target_position)
-	#set_movement_target(Vector3(0,0,0))
+	if navigation_use_path:
+		set_movement_target(navigation_path[navigation_point_now])
+	else:
+		set_movement_target(navigation_prefix_get_point(navigation_point_now))
+
 	navigation_ready = true
 	
 func set_movement_target(movement_target: Vector3):
@@ -87,11 +105,14 @@ func process_movementOLD(delta):
 	
 func process_movement(delta):
 	var body = get_node("Body")
-	if navigation_path != null and navigation_ready:
+	if navigation_path != null and navigation_ready and start_moving:
 		if navigation_agent.is_navigation_finished():
-			if navigation_point_now < navigation_path.size()-1:
+			if navigation_use_path and navigation_point_now < navigation_path.size()-1:
 				navigation_point_now += 1
 				set_movement_target(navigation_path[navigation_point_now])
+			elif (not navigation_use_path) and navigation_prefix_point_exists(navigation_point_now + 1):
+				navigation_point_now += 1
+				set_movement_target(navigation_prefix_get_point(navigation_point_now))
 			else:
 				return
 		#get_point_position 
@@ -124,7 +145,8 @@ func process_movement(delta):
 		if(not drinking_beer_now):
 			if(target_velocity == Vector3.ZERO):
 				# only reset animation to idle if we were playing generic moving animation
-				body.play_animation("idle")
+				if not dead:
+					body.play_animation("idle")
 			else:
 				var target_velocity_noy = Vector3(target_velocity.x, 0, target_velocity.z)
 				var angle = (target_velocity_noy.signed_angle_to(Vector3(1,0,0),Vector3(0,1,0)) + PI) / 2
@@ -147,7 +169,7 @@ func _physics_process(delta):
 	
 func _process(delta):
 	if(body.health > 0):
-		points += (50 - abs(50 - alcohol_level)) * delta * 10
+		points += (50 - abs(50 - alcohol_level)) * delta * 1
 	alcohol_level -= delta
 	if(alcohol_level < 0): alcohol_level = 0
 
@@ -168,10 +190,13 @@ func _ready():
 	body.stunnable = true
 	
 	body.collision_width_override = 16
-	body.collision_height_offsety = 5
+	body.collision_height_offsety = 0
 	body.init()
 	
-	if navigation_path != null and navigation_path.size() > 0:
+	if (navigation_path != null and navigation_path.size() > 0) or navigation_prefix != "":
+		if navigation_prefix != "":
+			navigation_use_path = false # use object navigation
+			
 		body.add_child(navigation_agent)
 		navigation_agent.path_desired_distance = 1.5
 		navigation_agent.target_desired_distance = 1.5
@@ -184,7 +209,7 @@ func _ready():
 func collision_DynamicObject_callback(object):
 	# detect can
 	#print(object.name)
-	if(object.name.begins_with("Can")):
+	if(object.name.begins_with("Can") and not dead):
 		drink_beer()
 		object.queue_free()
 

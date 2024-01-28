@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://c75dj0pt3qiv5"]
+
+[ext_resource type="Texture2D" uid="uid://24xfni3leeg8" path="res://Images/Decorations/flower2.png" id="1_n1j8n"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n1j8n")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

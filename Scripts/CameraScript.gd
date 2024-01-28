@@ -18,6 +18,14 @@ extends Camera3D
 @export var target: Node3D
 @export var offset = Vector3.ZERO
 
+# PIERWOTNE USTAWIENIA KAMERY: 0, 6.5, 5.5
+
+func _process(delta):
+	if Input.is_physical_key_pressed(KEY_1):
+		offset = Vector3(0, 6.5, 5.5)
+	if Input.is_physical_key_pressed(KEY_2):
+		offset = Vector3(0, 4.5, 7)
+
 func _physics_process(delta):
 	if !target:
 		return

@@ -15,5 +15,5 @@ func _ready():
 	body.jump_speed = 0
 	body.acceleration = 0
 	body.deceleration = 0
-	body.ignore_blocking_collision = false
+	body.dont_block = true
 	body.init()

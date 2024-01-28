@@ -12,6 +12,7 @@ radius = 0.08
 [node name="Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000655711, 0.00824597, -0.00357354)
 script = ExtResource("1_wrbud")
+dont_block = null
 
 [node name="node_center" type="Node3D" parent="Body"]
 

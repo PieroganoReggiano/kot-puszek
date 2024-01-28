@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://bjwxdjcy0vo36"]
+
+[ext_resource type="Texture2D" uid="uid://dof03kvf8joxe" path="res://Images/Decorations/trash1.png" id="1_ciwrt"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ciwrt")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]

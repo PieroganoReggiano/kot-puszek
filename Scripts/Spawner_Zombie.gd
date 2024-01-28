@@ -5,8 +5,10 @@ var object_to_load:PackedScene
 var script_to_load:Script
 @export var interval:float = 1
 @export var spawn_count:int = 100
+@export var enabled:bool = false
 
 @export var target:Node3D
+@export var trigger_react_to:Node3D
 @export var difficulty:float = 1.0
 @export var attack_player:bool = true
 @export var attack_drunkard:bool = true
@@ -28,11 +30,19 @@ func _ready():
 		logic_timer.set_wait_time(interval)
 		logic_timer.start()
 		get_node("Area3D/CSGBox3D").queue_free()
+		
+func enable(body=null):
+	enabled = true
+func disable(body=null):
+	enabled = false
 
 func spawn_object():
-	if spawn_counter >= spawn_count:
-		spawn_counter += 1
+	if not enabled:
 		return
+	if spawn_counter >= spawn_count:
+		return
+		
+	spawn_counter += 1
 		
 	var obj = object_to_load.instantiate()
 	obj.set_script(script_to_load)

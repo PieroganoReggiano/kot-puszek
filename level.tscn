@@ -1,13 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://clt23cavswubg"]
+[gd_scene load_steps=21 format=3 uid="uid://clt23cavswubg"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_5ff0w"]
 [ext_resource type="Script" path="res://Scripts/DebugCanvas.gd" id="1_maoha"]
+[ext_resource type="Script" path="res://Scripts/DemoLevelScript.gd" id="1_qxbux"]
 [ext_resource type="PackedScene" uid="uid://dm8blpdid2ljd" path="res://DynamicObject.tscn" id="3_cbims"]
 [ext_resource type="Script" path="res://Scripts/Objects/Player.gd" id="4_3etlu"]
 [ext_resource type="Texture2D" uid="uid://1as6p3f2yha0" path="res://Images/Floor/wall2_mid.png" id="5_w60u6"]
 [ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_6xb56"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="6_gxtd0"]
-[ext_resource type="PackedScene" path="res://ui.tscn" id="9_s423p"]
+[ext_resource type="PackedScene" uid="uid://b4a0flm6lefbh" path="res://ui.tscn" id="9_s423p"]
 [ext_resource type="Script" path="res://Scripts/Objects/Pan.gd" id="9_t8n4y"]
 [ext_resource type="PackedScene" uid="uid://bci4ceemy3ams" path="res://Objects/Spawner.tscn" id="10_a8ynw"]
 [ext_resource type="Script" path="res://Scripts/Objects/Zombie.gd" id="10_h2cjh"]
@@ -36,6 +37,7 @@ size = Vector3(200, 1, 200)
 size = Vector3(1, 5, 1)
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_qxbux")
 
 [node name="Can_test" parent="." instance=ExtResource("3_cbims")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0752869, 1.22803, -6.39949)

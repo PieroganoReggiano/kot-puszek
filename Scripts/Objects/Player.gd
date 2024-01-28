@@ -27,6 +27,7 @@ func _ready():
 	body.is_player = true
 	
 	body.collision_width_override = 13
+	body.collision_height_offsety = 0
 	
 	body.attack_class = 1
 	body.max_health = 0 #max_health
@@ -82,7 +83,7 @@ func collision_DynamicObject_callback(object):
 			body.update_animation()
 			object.queue_free()
 
-	if(object.name == "Drunkard"):
+	if(object.name == "Drunkard" and not object.dead):
 		if has_can:
 			has_can = false
 			points += 75
