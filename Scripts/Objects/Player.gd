@@ -5,7 +5,7 @@ extends Node3D
 
 @onready var body = self.get_node("Body")
 
-
+var sound_player : AudioStreamPlayer3D;
 
 
 # ---- player states ----
@@ -14,6 +14,7 @@ var points:int = 0
 var has_can:bool = false
 var has_pan:bool = false
 
+var krok_integral = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,6 +38,9 @@ func _ready():
 	
 	body.init()
 	
+	sound_player = AudioStreamPlayer3D.new()
+	body.add_child(sound_player)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -48,6 +52,16 @@ func _process(delta):
 	elif has_pan: body.animation_modifier = "_pan"
 	else: body.animation_modifier = ""
 	
+	
+	if body.velocity.length() > 0.1:
+		var threshold = 2.5
+		krok_integral += (body.velocity * delta).length()
+		if krok_integral > threshold:
+			krok_integral -= threshold
+			if not sound_player.playing:
+				sound_player.stream = load("res://kot-krok.wav")
+				sound_player.play()
+	
 func _physics_process(delta):
 	pass
 	
@@ -55,6 +69,20 @@ func death(attacker):
 	body.force_stun = true
 	body.max_health = 0
 	body.play_animation("death")
+
+func sound_jump():
+	if not sound_player.playing or (sound_player.playing && sound_player.stream != load("res://skoku.ogg")):
+		sound_player.stream = load("res://skoku.ogg")
+		sound_player.play()
+
+func sound_attack():
+	if has_pan:
+		sound_player.stream = load("res://swist1.wav")
+		sound_player.play()
+	else:
+		sound_player.stream = load("res://swist3.wav")
+		sound_player.play()
+		
 
 #func is_stunned():
 #	if stun_timer < stun_time:

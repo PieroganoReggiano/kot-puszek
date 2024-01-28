@@ -174,6 +174,8 @@ func make_invincible():
 
 func attack():
 	if attack_timer > attack_cooldown and not is_stunned():
+		if body.get_parent().name in ["Puszek", "Player"]: # DIRTY!
+			get_parent().sound_attack()
 		force_attack()
 		
 func force_attack():
@@ -295,6 +297,8 @@ func process_movement(delta):
 	if (move_jump or is_stunned()) and not force_stun and gravity_enabled:
 		if body.is_on_floor():
 			jump_time_elapsed = 0
+			if get_parent().name == "Player" or get_parent().name == "Puszek":
+				get_parent().sound_jump()
 		if jump_time_elapsed < jump_acceleration_time:
 			jump_time_elapsed += delta
 			move_direction.y += jump_speed * delta # * (jump_time_elapsed/jump_acceleration_time)
