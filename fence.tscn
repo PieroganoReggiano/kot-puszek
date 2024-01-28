@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bywk4xc5gx5s"]
+
+[ext_resource type="Shader" path="res://fence.gdshader" id="1_1xari"]
+[ext_resource type="ArrayMesh" uid="uid://c0pkikkogt73m" path="res://fence.obj" id="1_qebxm"]
+[ext_resource type="Texture2D" uid="uid://cwinsnrojot3k" path="res://levele-wip/tileset.png" id="2_t6s5s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7o63y"]
+render_priority = 0
+shader = ExtResource("1_1xari")
+shader_parameter/tiles = ExtResource("2_t6s5s")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j7th4"]
+size = Vector3(1, 4, 1)
+
+[node name="Fence" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_7o63y")
+mesh = ExtResource("1_qebxm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_j7th4")
