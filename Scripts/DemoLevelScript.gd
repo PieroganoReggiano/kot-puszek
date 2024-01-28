@@ -5,3 +5,4 @@ func _on_zombie_easy_spawner_trigger_body_entered(body):
 	if parent != null:
 		if parent.name == "Drunkard":
 			get_node("Spawners/Zombie_Easy_Drunkard").enable()
+			get_node("../..").get_node("Musicco").order_danger()

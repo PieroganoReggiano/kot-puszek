@@ -107,18 +107,6 @@ func _process(delta):
 		stop()
 	if not playing and should_play:
 		play()
-	if Input.is_physical_key_pressed(KEY_Y):
-		order_chill()
-	if Input.is_physical_key_pressed(KEY_U):
-		order_beginning()
-	if Input.is_physical_key_pressed(KEY_I):
-		order_danger()
-	if Input.is_physical_key_pressed(KEY_O):
-		order_large_fight()
-	if Input.is_physical_key_pressed(KEY_P):
-		order_hard_style()
-	if Input.is_physical_key_pressed(KEY_SPACE):
-		force_order()
 	pass
 	
 func _cycle():

@@ -156,8 +156,6 @@ func start_level_logic():
 	get_node("LevelContainer/Level/Drunkard").start_moving = true
 
 func _process(delta):
-	if Input.is_key_pressed(KEY_0):
-		victory()
 	if time_to_start < -10000.0:
 		return
 	time_to_start -= delta

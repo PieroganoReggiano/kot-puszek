@@ -19,6 +19,9 @@ var logic_timer:Timer = Timer.new()
 var death_anim_timer:Timer = Timer.new()
 var rng = RandomNumberGenerator.new()
 
+var krok_integral = 0.0
+var sound_player : AudioStreamPlayer3D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not Engine.is_editor_hint():
@@ -46,6 +49,9 @@ func _ready():
 	
 	
 	body.init()
+	
+	sound_player = AudioStreamPlayer3D.new()
+	body.add_child(sound_player)
 	
 func _physics_process(delta):
 	if target != null:
@@ -78,6 +84,16 @@ func _physics_process(delta):
 func _process(delta):
 	if not Engine.is_editor_hint():
 		pass
+		
+	if body.velocity.length() > 0.01:
+		var threshold = 2.5
+		krok_integral += (body.velocity * delta).length()
+		if krok_integral > threshold:
+			krok_integral -= threshold
+			if not sound_player.playing:
+				sound_player.stream = load("res://krok.wav")
+				sound_player.play()
+		
 
 func take_damage(attacker, damage):
 	if attacker.points != null:

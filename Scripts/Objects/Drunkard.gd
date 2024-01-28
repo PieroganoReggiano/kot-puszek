@@ -14,6 +14,11 @@ var gravity:float = 10
 
 @onready var body = get_node("Body")
 
+
+var sound_player : AudioStreamPlayer3D;
+
+var krok_integral = 0.0
+
 var points:float = 0
 
 var anim_timer:Timer = Timer.new()
@@ -172,6 +177,16 @@ func _process(delta):
 		points += (50 - abs(50 - alcohol_level)) * delta * 1
 	alcohol_level -= delta
 	if(alcohol_level < 0): alcohol_level = 0
+	
+	
+	if body.velocity.length() > 0.01:
+		var threshold = 2.5
+		krok_integral += (body.velocity * delta).length()
+		if krok_integral > threshold:
+			krok_integral -= threshold
+			if not sound_player.playing:
+				sound_player.stream = load("res://krok.wav")
+				sound_player.play()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -205,6 +220,10 @@ func _ready():
 		call_deferred("navigation_setup")
 	
 	body.play_animation("idle")
+	
+	
+	sound_player = AudioStreamPlayer3D.new()
+	body.add_child(sound_player)
 
 func collision_DynamicObject_callback(object):
 	# detect can
