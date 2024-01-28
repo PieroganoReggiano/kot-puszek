@@ -1,0 +1,30 @@
+[gd_scene load_steps=17 format=3 uid="uid://diesdf2sh8w5d"]
+
+[ext_resource type="Script" path="res://musicco.gd" id="1_gw8w3"]
+[ext_resource type="AudioStream" uid="uid://dnh738o7kuwfc" path="res://musicco-patternen/music-chill0.wav" id="2_mbikr"]
+[ext_resource type="AudioStream" uid="uid://da45m6cnnhpjf" path="res://musicco-patternen/music-chill1.wav" id="3_gydbp"]
+[ext_resource type="AudioStream" uid="uid://e02t4v4i2bt6" path="res://musicco-patternen/music-beginning0.wav" id="4_hnqqe"]
+[ext_resource type="AudioStream" uid="uid://ccew7ysp1qvfn" path="res://musicco-patternen/music-beginning1.wav" id="5_2hj24"]
+[ext_resource type="AudioStream" uid="uid://bfwwto6cv0470" path="res://musicco-patternen/music-danger0.wav" id="6_jrldc"]
+[ext_resource type="AudioStream" uid="uid://bleufwpmk14ba" path="res://musicco-patternen/music-danger1.wav" id="7_5h2u7"]
+[ext_resource type="AudioStream" uid="uid://ccavdrkhvrs7w" path="res://musicco-patternen/music-danger2.wav" id="8_iebm6"]
+[ext_resource type="AudioStream" uid="uid://crguqivx5gubc" path="res://musicco-patternen/music-danger3.wav" id="9_2bjfi"]
+[ext_resource type="AudioStream" uid="uid://bonctyoqvd0bx" path="res://musicco-patternen/music-danger4.wav" id="10_fqfgj"]
+[ext_resource type="AudioStream" uid="uid://b12jhysd6ydua" path="res://musicco-patternen/music-danger5.wav" id="11_4ll2g"]
+[ext_resource type="AudioStream" uid="uid://dhqww1ju8tuso" path="res://musicco-patternen/music-large-fight0.wav" id="12_0murr"]
+[ext_resource type="AudioStream" uid="uid://cw65r5knujkjj" path="res://musicco-patternen/music-large-fight1.wav" id="13_yxwyq"]
+[ext_resource type="AudioStream" uid="uid://dod8jovy73udq" path="res://musicco-patternen/music-large-fight2.wav" id="14_amiqx"]
+[ext_resource type="AudioStream" uid="uid://b86ceg2a4un30" path="res://musicco-patternen/music-large-fight3.wav" id="15_oh2a6"]
+[ext_resource type="AudioStream" uid="uid://bj58v6ps8xvhu" path="res://musicco-patternen/music-hard-style0.wav" id="16_5tuqx"]
+
+[node name="Musicco" type="AudioStreamPlayer"]
+script = ExtResource("1_gw8w3")
+streams_chill = Array[AudioStream]([ExtResource("2_mbikr"), ExtResource("3_gydbp")])
+streams_beginning = Array[AudioStream]([ExtResource("4_hnqqe"), ExtResource("5_2hj24")])
+streams_danger = Array[AudioStream]([ExtResource("6_jrldc"), ExtResource("7_5h2u7"), ExtResource("8_iebm6"), ExtResource("9_2bjfi"), ExtResource("10_fqfgj"), ExtResource("11_4ll2g")])
+loop_danger = 2
+streams_large_fight = Array[AudioStream]([ExtResource("12_0murr"), ExtResource("13_yxwyq"), ExtResource("14_amiqx"), ExtResource("15_oh2a6")])
+loop_large_fight = 2
+streams_hard_style = Array[AudioStream]([ExtResource("16_5tuqx")])
+
+[connection signal="finished" from="." to="." method="_on_finished"]
