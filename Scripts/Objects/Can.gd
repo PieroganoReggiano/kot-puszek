@@ -1,8 +1,8 @@
 @tool
 extends Node3D
 
-@export var gravity_enabled = false
-@export var gravity = 75
+@export var gravity_enabled = true
+@export var gravity = 55
 
 @onready var body = get_node("Body")
 
@@ -15,4 +15,5 @@ func _ready():
 	body.jump_speed = 0
 	body.acceleration = 0
 	body.deceleration = 0
+	body.ignore_blocking_collision = false
 	body.init()

@@ -12,11 +12,6 @@ radius = 0.08
 [node name="Body" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000655711, 0.00824597, -0.00357354)
 script = ExtResource("1_wrbud")
-speed = 14.0
-jump_speed = 4.0
-acceleration = 3.0
-deceleration = 3.0
-fall_acceleration = 75
 
 [node name="node_center" type="Node3D" parent="Body"]
 
