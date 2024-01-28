@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://clt23cavswubg"]
+[gd_scene load_steps=16 format=3 uid="uid://clt23cavswubg"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_5ff0w"]
 [ext_resource type="Script" path="res://Scripts/DebugCanvas.gd" id="1_maoha"]
@@ -7,15 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://1as6p3f2yha0" path="res://Images/Floor/wall2_mid.png" id="5_w60u6"]
 [ext_resource type="Script" path="res://Scripts/Objects/Drunkard.gd" id="6_6xb56"]
 [ext_resource type="Script" path="res://Scripts/Objects/Can.gd" id="6_gxtd0"]
-[ext_resource type="Script" path="res://Scripts/UI/koto_ui.gd" id="10_8f11n"]
+[ext_resource type="PackedScene" uid="uid://b4a0flm6lefbh" path="res://ui.tscn" id="9_s423p"]
 [ext_resource type="Script" path="res://Scripts/Objects/Zombie.gd" id="10_h2cjh"]
-[ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="10_mh80m"]
-[ext_resource type="Texture2D" uid="uid://laike43xpm0k" path="res://Images/UI/healthbar10.png" id="14_kl5n7"]
-[ext_resource type="Texture2D" uid="uid://c3wuh8o08c4jg" path="res://meniusy/butonik2.png" id="14_rt6u4"]
-[ext_resource type="Texture2D" uid="uid://b8cw2kgoyual1" path="res://Images/UI/frames/healthbar11.png" id="14_yoerg"]
-[ext_resource type="Texture2D" uid="uid://bvpy80pqxem3n" path="res://meniusy/butonik-najech2.png" id="15_5hgdq"]
-[ext_resource type="FontFile" uid="uid://dbaodg3evongo" path="res://foncik/PixelifySans-Medium.ttf" id="15_vtcd2"]
-[ext_resource type="AudioStream" uid="uid://rcat6rmlixjo" path="res://meniusy/pum_menu.ogg" id="17_u0cr5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_merve"]
 vertices = PackedVector3Array(-9.5, 0.752674, -9.5, -9.5, 0.752674, 9.5, 9.5, 0.752674, 9.5, 9.5, 0.752674, -9.5)
@@ -37,10 +30,6 @@ size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2oot"]
 size = Vector3(0.2, 1, 0.2)
-
-[sub_resource type="LabelSettings" id="LabelSettings_trccm"]
-font = ExtResource("15_vtcd2")
-font_size = 48
 
 [node name="Level" type="Node3D"]
 
@@ -160,145 +149,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42549, 0.418671, 0)
 script = ExtResource("10_h2cjh")
 speed = 1.0
 
-[node name="ui" type="Control" parent="."]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("10_mh80m")
-
-[node name="koto_ui" type="HBoxContainer" parent="ui"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("10_8f11n")
-
-[node name="Control" type="Control" parent="ui/koto_ui"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="ui/koto_ui/Control"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -128.0
-offset_right = 32.0
-grow_vertical = 0
-scale = Vector2(3, 3)
-theme_override_constants/margin_left = 19
-theme_override_constants/margin_bottom = 320
-
-[node name="Empty" type="TextureRect" parent="ui/koto_ui/Control/MarginContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("14_kl5n7")
-stretch_mode = 4
-
-[node name="Animatione" type="TextureRect" parent="ui/koto_ui/Control/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("14_yoerg")
-stretch_mode = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ui/koto_ui"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="ui/koto_ui"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PauzaMeniu" type="Control" parent="ui"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="ui/PauzaMeniu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.345098, 0.345098, 0.345098, 0.419608)
-
-[node name="CenterContainer" type="CenterContainer" parent="ui/PauzaMeniu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ui/PauzaMeniu/CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 34
-
-[node name="Return" type="TextureButton" parent="ui/PauzaMeniu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("14_rt6u4")
-texture_pressed = ExtResource("15_5hgdq")
-texture_hover = ExtResource("15_5hgdq")
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="ui/PauzaMeniu/CenterContainer/VBoxContainer/Return"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Wznów"
-label_settings = SubResource("LabelSettings_trccm")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Meniu" type="TextureButton" parent="ui/PauzaMeniu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("14_rt6u4")
-texture_pressed = ExtResource("15_5hgdq")
-texture_hover = ExtResource("15_5hgdq")
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="ui/PauzaMeniu/CenterContainer/VBoxContainer/Meniu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Meniu"
-label_settings = SubResource("LabelSettings_trccm")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="ui/PauzaMeniu/CenterContainer"]
-visible = false
-layout_mode = 2
-text = "Sraken"
-
-[node name="MeniuMusik" type="AudioStreamPlayer2D" parent="ui"]
-stream = ExtResource("17_u0cr5")
-
-[node name="Timer" type="Timer" parent="ui"]
-wait_time = 0.35
-autostart = true
-
-[connection signal="pressed" from="ui/PauzaMeniu/CenterContainer/VBoxContainer/Return" to="ui" method="_on_return_pressed"]
-[connection signal="pressed" from="ui/PauzaMeniu/CenterContainer/VBoxContainer/Meniu" to="ui" method="_on_meniu_pressed"]
-[connection signal="timeout" from="ui/Timer" to="ui/koto_ui" method="_on_timer_timeout"]
+[node name="ui" parent="." instance=ExtResource("9_s423p")]
