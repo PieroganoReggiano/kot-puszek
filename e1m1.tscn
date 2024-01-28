@@ -26,14 +26,8 @@ offset = Vector3(0, 6.5, 5.5)
 transform = Transform3D(1, 0, 0, 0, 0.508335, 0.861159, 0, -0.861159, 0.508335, 0, 9.27229, 7.20922)
 
 [node name="Player" parent="." instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164, 1.1, 112)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164.4, 1.1, 112.346)
 script = ExtResource("3_kmk7j")
-gravity_enabled = true
-speed = 7.0
-acceleration = 6.0
-deceleration = 10.0
-jump_speed = 120.0
-gravity = 30.0
 
 [node name="Drunkard" parent="." instance=ExtResource("2_sg15i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.732, 1.01575, 107.322)

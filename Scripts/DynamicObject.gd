@@ -301,7 +301,7 @@ func process_movement(delta):
 
 	
 	if(animation_use_move):
-		if(target_velocity == Vector3.ZERO):
+		if(target_velocity == Vector3.ZERO and body.is_on_floor()):
 			# only reset animation to idle if we were playing generic moving animation
 			if(animation_playing in ["move_up", "move_down", "move_side", "move_attack"]):
 				play_animation("idle")

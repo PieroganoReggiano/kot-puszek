@@ -19,12 +19,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000655711, 0.00824597, -0.0
 script = ExtResource("1_gr72u")
 gravity_enabled = true
 gravity = 20.0
-max_health = null
-stunnable = null
-attack_strength = null
-attack_class = null
 jump_speed = 4.0
-ignore_blocking_collision = null
 
 [node name="node_center" type="Node3D" parent="Body"]
 
