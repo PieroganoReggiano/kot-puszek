@@ -296,6 +296,7 @@ func process_movement(delta):
 	# init jump - jump on getting stuned (by taking damage, not by forcing state) or when jump command is received
 	if (move_jump or is_stunned()) and not force_stun and gravity_enabled:
 		if body.is_on_floor():
+			move_direction.y = 0
 			jump_time_elapsed = 0
 			if get_parent().name == "Player" or get_parent().name == "Puszek":
 				get_parent().sound_jump()

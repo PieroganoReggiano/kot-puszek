@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bff0r2nv5n3nv"]
+[gd_scene load_steps=71 format=3 uid="uid://bff0r2nv5n3nv"]
 
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_03oag"]
 [ext_resource type="Script" path="res://Scripts/DemoLevelScript.gd" id="1_l1qem"]
@@ -51,7 +51,7 @@ size = Vector2(200, 200)
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4hjd"]
 size = Vector3(512, 2, 512)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_fjlgb"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dlpb4"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -63,7 +63,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3e4kj"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_36wa6"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -75,7 +75,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_6j475"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7it0"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -87,7 +87,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rrqk4"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ne1x"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -99,7 +99,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ihql1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ds5vt"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -111,7 +111,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1nwak"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0orul"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -123,7 +123,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7re4l"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_100f8"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -135,7 +135,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dwnxd"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jy5xn"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -147,7 +147,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_h600i"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_j6j7k"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -159,7 +159,55 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kyebb"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntfnj"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_gg73h")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_moe1i"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_gg73h")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kjcym"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_gg73h")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1r46"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_gg73h")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3b82"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -171,19 +219,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_p2k1w"]
-resource_local_to_scene = true
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("12_gg73h")
-}],
-"loop": false,
-"name": &"idle",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2c5sw"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_e8vfk"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -195,7 +231,127 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ul088"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0rqb"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_vtinq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pruld"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_vtinq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3aob"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_vtinq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i8qo1"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_vtinq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ofov5"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_vtinq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xt2lm"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_vtinq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pnl3i"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_vtinq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_neltg"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_vtinq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b5gab"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_gg73h")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_poeft"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_vtinq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fpcjc"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -243,7 +399,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.732, 1.01575, 106.665)
 script = ExtResource("6_65nb8")
 navigation_path = PackedVector3Array(-170, 1.2, 120, -165, 0, 122, -158, 0, 117)
 navigation_prefix = "Drunkard_MovingPath"
-max_health = 50.0
+max_health = 5.0
 
 [node name="Drunkard_MovingPath" type="Node3D" parent="."]
 
@@ -343,17 +499,17 @@ size = Vector3(0.5, 0.5, 0.5)
 script = ExtResource("6_i0cqs")
 
 [node name="19" type="CSGBox3D" parent="Drunkard_MovingPath"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.414, 1.44748, 103.204)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.433, 1.44748, 100.128)
 size = Vector3(0.5, 0.5, 0.5)
 script = ExtResource("6_i0cqs")
 
 [node name="20" type="CSGBox3D" parent="Drunkard_MovingPath"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.501, 1.44748, 103.042)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.501, 1.44748, 100.12)
 size = Vector3(0.5, 0.5, 0.5)
 script = ExtResource("6_i0cqs")
 
 [node name="21" type="CSGBox3D" parent="Drunkard_MovingPath"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.29, 1.44748, 102.542)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.29, 1.44748, 101.016)
 size = Vector3(0.5, 0.5, 0.5)
 script = ExtResource("6_i0cqs")
 
@@ -686,79 +842,79 @@ dont_block = true
 [node name="Foliage1" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -166.848, 2.36871, 102.684)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_fjlgb")
+sprite_frames = SubResource("SpriteFrames_dlpb4")
 dont_block = true
 
 [node name="Foliage4" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -98.816, 2.36871, 31.5462)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_3e4kj")
+sprite_frames = SubResource("SpriteFrames_36wa6")
 dont_block = true
 
 [node name="Foliage12" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -98.816, 2.36871, 33.7063)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_3e4kj")
+sprite_frames = SubResource("SpriteFrames_q7it0")
 dont_block = true
 
 [node name="Foliage13" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -96.7616, 2.36871, 33.2429)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_3e4kj")
+sprite_frames = SubResource("SpriteFrames_8ne1x")
 dont_block = true
 
 [node name="Foliage14" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -96.7616, 2.36871, 31.0174)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_3e4kj")
+sprite_frames = SubResource("SpriteFrames_ds5vt")
 dont_block = true
 
 [node name="Foliage15" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -103.509, 2.36871, 27.9756)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_3e4kj")
+sprite_frames = SubResource("SpriteFrames_0orul")
 dont_block = true
 
 [node name="Foliage5" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -102.589, 2.36871, 28.1011)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_6j475")
+sprite_frames = SubResource("SpriteFrames_100f8")
 dont_block = true
 
 [node name="Foliage6" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -101.273, 2.36871, 26.8033)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_rrqk4")
+sprite_frames = SubResource("SpriteFrames_jy5xn")
 dont_block = true
 
 [node name="Foliage7" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -97.9285, 3.32608, 29.9398)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_ihql1")
+sprite_frames = SubResource("SpriteFrames_j6j7k")
 dont_block = true
 
 [node name="Foliage8" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -97.5655, 3.32608, 28.4185)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_1nwak")
+sprite_frames = SubResource("SpriteFrames_ntfnj")
 dont_block = true
 
 [node name="Foliage9" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -96.3406, 3.32608, 28.7798)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_7re4l")
+sprite_frames = SubResource("SpriteFrames_moe1i")
 dont_block = true
 
 [node name="Foliage10" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -98.6223, 3.32608, 26.7108)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_dwnxd")
+sprite_frames = SubResource("SpriteFrames_kjcym")
 dont_block = true
 
 [node name="Foliage11" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(0.684114, 0, 0.729375, 0, 1, 0, -0.729375, 0, 0.684114, -100.073, 3.32608, 26.5534)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_h600i")
+sprite_frames = SubResource("SpriteFrames_w1r46")
 dont_block = true
 
 [node name="Foliage3" parent="Decorations" instance=ExtResource("8_lxguc")]
@@ -956,61 +1112,61 @@ dont_block = true
 [node name="Foliage2" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -163.342, 1.64918, 105.121)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_p3b82")
 dont_block = true
 
 [node name="Foliage16" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.001, 1.64918, 130.627)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_e8vfk")
 dont_block = true
 
 [node name="Foliage17" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.384, 1.64918, 136.602)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_h0rqb")
 dont_block = true
 
 [node name="Foliage18" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.113, 1.64918, 137.049)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_pruld")
 dont_block = true
 
 [node name="Foliage19" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.579, 1.64918, 99.4473)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_t3aob")
 dont_block = true
 
 [node name="Foliage20" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.327, 1.64918, 95.9937)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_i8qo1")
 dont_block = true
 
 [node name="Foliage21" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.122, 1.64918, 90.879)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_ofov5")
 dont_block = true
 
 [node name="Foliage22" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.3135, 1.64918, 86.0041)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_xt2lm")
 dont_block = true
 
 [node name="Foliage23" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.4911, 1.64918, 98.666)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_pnl3i")
 dont_block = true
 
 [node name="Foliage24" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.62, 1.64918, 90.2925)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_kyebb")
+sprite_frames = SubResource("SpriteFrames_neltg")
 dont_block = true
 
 [node name="Flower0" parent="Decorations" instance=ExtResource("8_lxguc")]
@@ -1136,19 +1292,19 @@ dont_block = true
 [node name="Bush0" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.397, 2.61572, 134.64)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_p2k1w")
+sprite_frames = SubResource("SpriteFrames_b5gab")
 dont_block = true
 
 [node name="Bush1" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.476, 2.61572, 135.686)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_2c5sw")
+sprite_frames = SubResource("SpriteFrames_poeft")
 dont_block = true
 
 [node name="Bush2" parent="Decorations" instance=ExtResource("8_lxguc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.71, 2.61572, 136.599)
 script = ExtResource("9_5xqrx")
-sprite_frames = SubResource("SpriteFrames_ul088")
+sprite_frames = SubResource("SpriteFrames_fpcjc")
 dont_block = true
 
 [node name="Flower5" parent="Decorations" instance=ExtResource("8_lxguc")]
@@ -1588,7 +1744,7 @@ gravity = false
 [node name="Pans" type="Node3D" parent="."]
 
 [node name="Pan0" parent="Pans" instance=ExtResource("2_sg15i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.638, 2.18511, 102.544)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.025, 2.18511, 100.045)
 script = ExtResource("8_1eew8")
 gravity_enabled = true
 
@@ -1688,8 +1844,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -150, 1, 126)
 size = Vector3(14, 10, 11)
 
 [node name="Budyn5" parent="Budyny" instance=ExtResource("6_ygdt8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, 104)
-size = Vector3(17, 10, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, 102)
+size = Vector3(17, 10, 7)
 
 [node name="Budyn6" parent="Budyny" instance=ExtResource("6_ygdt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134, 1, 109.001)
@@ -1753,7 +1909,7 @@ size = Vector3(3, 10, 18)
 
 [node name="Budyn8" parent="Budyny" instance=ExtResource("6_ygdt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126, 1, 84)
-size = Vector3(9, 10, 18)
+size = Vector3(9, 10, 14)
 
 [node name="Budyn2" parent="Budyny" instance=ExtResource("6_ygdt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -187, 1, 100)
